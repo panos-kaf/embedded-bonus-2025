@@ -1,0 +1,71 @@
+#include <stdlib.h>
+
+volatile int anyThreadCreated = 1;
+
+#include "heaplayers.h"
+
+using namespace HL;
+
+class TopHeap : public SizeHeap<UniqueHeap<ZoneHeap<MmapHeap, 65536>> > {};
+
+class TheCustomHeapType :
+  public TraceHeap<ANSIWrapper<KingsleyHeap<FreelistHeap<TopHeap>, TopHeap>>, 1> {};
+
+inline static TheCustomHeapType * getCustomHeap() {
+  static char thBuf[sizeof(TheCustomHeapType)];
+  static TheCustomHeapType * th = new (thBuf) TheCustomHeapType;
+  return th;
+}
+
+#if defined(_WIN32)
+#pragma warning(disable:4273)
+#endif
+
+#include "printf.h"
+
+#if !defined(_WIN32)
+#include <unistd.h>
+
+extern "C" {
+  // For use by the replacement printf routines (see
+  // https://github.com/emeryberger/printf)
+  void _putchar(char ch) { ::write(1, (void *)&ch, 1); }
+}
+#endif
+
+#include "wrappers/generic-memalign.cpp"
+
+#include "wrappers/wrapper.cpp" // to map xxmalloc to malloc etc.
+
+extern "C" {
+  
+  void * xxmalloc (size_t sz) {
+    const char msg[] = "Hello from custom malloc\n";
+    write(1, msg, sizeof(msg) - 1);
+    //printf_("xxmalloc\n");
+    auto ptr = getCustomHeap()->malloc (sz);
+    //printf_("xxmalloc %lu = %p\n", sz, ptr);
+    return ptr;
+  }
+
+  void xxfree (void * ptr) {
+    getCustomHeap()->free (ptr);
+  }
+
+  void * xxmemalign(size_t alignment, size_t sz) {
+    return generic_xxmemalign(alignment, sz);
+  }
+  
+  size_t xxmalloc_usable_size (void * ptr) {
+    return getCustomHeap()->getSize (ptr);
+  }
+
+  void xxmalloc_lock() {
+    // getCustomHeap()->lock();
+  }
+
+  void xxmalloc_unlock() {
+    // getCustomHeap()->unlock();
+  }
+  
+}

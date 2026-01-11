@@ -1,0 +1,2 @@
+#! /bin/sh
+g++ --std=c++14 -fPIC -pipe -march=native -O3 -finline-limit=65000 -fkeep-inline-functions -finline-functions -ffast-math -fomit-frame-pointer -DNDEBUG  -I. -I../.. -I../../util -D_REENTRANT=1 -shared libkingsley.cpp -o libkingsley.so -ldl -lpthread
