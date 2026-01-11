@@ -1,0 +1,98 @@
+cfrac       sys   0:02.93 2800 2.92 0.00 0 482
+cfrac       mi    0:02.92 3052 2.91 0.00 0 482
+cfrac       kingsley 0:03.09 5256 3.08 0.00 0 621
+cfrac       dlheap 0:16.08 5753260 9.24 6.76 0 2091325
+espresso    sys   0:03.76 2572 3.73 0.01 2 386
+espresso    mi    0:03.68 2888 3.66 0.01 0 386
+espresso    kingsley 0:03.39 5060 3.36 0.01 0 528
+espresso    dlheap 0:09.35 4328184 5.77 3.54 0 1800142
+barnes      sys   0:02.27 61932 2.26 0.00 1 818
+barnes      mi    0:02.22 61904 2.21 0.00 0 820
+barnes      kingsley 0:02.34 67704 2.32 0.00 0 348
+barnes      dlheap 0:02.24 63996 2.23 0.00 0 918
+Command exited with non-zero status 127
+redis       sys   0: 1940 0.00 0.00 0 136
+Command exited with non-zero status 127
+redis       mi    0: 2068 0.00 0.00 0 137
+Command exited with non-zero status 127
+redis       kingsley 0: 2068 0.00 0.00 0 136
+Command exited with non-zero status 127
+redis       dlheap 0: 2068 0.00 0.00 0 137
+larsonN-sized sys   0:8.980 109016 63.14 0.73 1 29346
+larsonN-sized mi    0:9.379 108768 62.13 0.89 0 28137
+Command terminated by signal 11
+larsonN-sized kingsley 0: 54144 0.02 0.06 0 12474
+Command terminated by signal 11
+larsonN-sized dlheap 0: 194128 0.04 0.22 0 88769
+mstressN    sys   0:01.20 397948 7.34 1.46 0 200791
+mstressN    mi    0:01.19 412088 7.42 1.43 0 222523
+Command terminated by signal 11
+mstressN    kingsley 0:00.11 3800 0.00 0.02 0 299
+Command terminated by signal 11
+mstressN    dlheap 0:00.08 3828 0.00 0.01 0 316
+rptestN     sys   0:1.480 43828 2.58 1.03 1 23676
+rptestN     mi    0:1.426 93364 2.32 1.21 0 36266
+Command terminated by signal 11
+rptestN     kingsley 0: 4176 0.00 0.04 0 534
+Command terminated by signal 11
+rptestN     dlheap 0: 3840 0.00 0.04 0 510
+gs          sys   0:00.27 29264 0.18 0.01 144 5311
+gs          mi    0:00.22 29588 0.20 0.01 0 5398
+gs          kingsley 0:00.20 33988 0.18 0.01 0 5512
+gs          dlheap 0:00.58 629196 0.26 0.31 0 296205
+lua         sys   0:01.65 115476 12.90 0.70 100 110080
+lua         mi    0:01.58 115540 12.36 0.63 0 109734
+lua         kingsley 0:01.63 118032 12.71 0.84 1 119132
+lua         dlheap 0:02.27 606324 13.93 5.22 0 1684790
+alloc-test1 sys   0:02.98 14060 2.97 0.00 0 1947
+alloc-test1 mi    0:03.04 13808 3.02 0.00 0 1947
+alloc-test1 kingsley 0:02.87 15736 2.86 0.00 0 2727
+alloc-test1 dlheap 0:11.31 3440212 7.42 3.84 0 1276394
+alloc-testN sys   0:09.54 16460 117.80 0.11 0 3746
+alloc-testN mi    0:10.15 16356 122.94 0.15 0 3747
+Command terminated by signal 11
+alloc-testN kingsley 0:00.17 4000 0.00 0.02 0 391
+Command terminated by signal 11
+alloc-testN dlheap 0:00.18 5420 0.00 0.03 0 836
+sh6benchN   sys   0:00.87 337744 10.15 0.42 0 84452
+sh6benchN   mi    0:01.02 337680 12.24 0.42 0 84453
+Command terminated by signal 11
+sh6benchN   kingsley 0:00.25 3680 0.02 0.03 0 316
+Command terminated by signal 11
+sh6benchN   dlheap 0:00.18 3824 0.00 0.02 0 356
+sh8benchN   sys   0:04.24 251532 51.79 0.32 0 56515
+sh8benchN   mi    0:04.91 205104 58.84 0.46 0 56439
+Command terminated by signal 11
+sh8benchN   kingsley 0:00.43 83500 0.01 0.14 0 346
+Command terminated by signal 11
+sh8benchN   dlheap 0:00.36 81924 0.01 0.13 0 563
+xmalloc-testN sys   0:3.151 62660 60.71 0.79 0 38563
+xmalloc-testN mi    0:3.199 61692 62.13 0.80 0 38186
+Command terminated by signal 11
+xmalloc-testN kingsley 0: 3684 0.00 0.02 0 305
+Command terminated by signal 11
+xmalloc-testN dlheap 0: 3684 0.00 0.02 0 400
+cache-scratch1 sys   0:01.21 3544 1.20 0.00 0 269
+cache-scratch1 mi    0:00.96 3696 0.94 0.00 0 270
+cache-scratch1 kingsley 0:00.90 3852 0.90 0.00 0 282
+cache-scratch1 dlheap 0:00.88 4032 0.88 0.00 0 294
+cache-scratchN sys   0:00.20 3696 2.18 0.00 0 295
+cache-scratchN mi    0:00.21 3824 2.40 0.00 0 297
+cache-scratchN kingsley 0:00.22 3956 2.43 0.00 0 312
+cache-scratchN dlheap 0:00.21 4092 2.34 0.00 0 323
+glibc-simple sys   0:02.97 2068 2.95 0.00 0 263
+glibc-simple mi    0:02.95 1952 2.94 0.00 0 266
+glibc-simple kingsley 0:01.52 4208 1.51 0.00 0 347
+glibc-simple dlheap 0:16.72 6730672 8.97 7.70 0 2791960
+glibc-thread sys   0:2.183 3616 27.18 0.02 0 938
+glibc-thread mi    0:3.274 3744 24.89 0.03 0 930
+Command terminated by signal 11
+glibc-thread kingsley 0: 3940 0.00 0.03 0 354
+Command terminated by signal 11
+glibc-thread dlheap 0: 3904 0.00 0.05 0 493
+rocksdb     sys   0:04.08 92248 4.02 0.41 135 37379
+rocksdb     mi    0:03.58 91648 3.57 0.36 0 37139
+Command terminated by signal 11
+rocksdb     kingsley 0:00.60 38576 0.09 0.11 139 19481
+Command terminated by signal 11
+rocksdb     dlheap 0:00.46 38936 0.10 0.09 0 24096

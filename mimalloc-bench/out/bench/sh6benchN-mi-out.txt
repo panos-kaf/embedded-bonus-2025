@@ -1,0 +1,3 @@
+
+
+Total elapsed time for 28 threads: 1.00 (12.6428 CPU)

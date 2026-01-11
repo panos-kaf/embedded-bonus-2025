@@ -1,0 +1,12 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/realloc_reuse_medium.dir/link.d"
+  "CMakeFiles/realloc_reuse_medium.dir/realloc_reuse.c.o"
+  "CMakeFiles/realloc_reuse_medium.dir/realloc_reuse.c.o.d"
+  "realloc_reuse_medium"
+  "realloc_reuse_medium.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/realloc_reuse_medium.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

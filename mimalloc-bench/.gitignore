@@ -1,4 +1,6 @@
 /*
 !/.gitignore
 !/graphs/
+!/extern/
+!/out/
 !/*.sh

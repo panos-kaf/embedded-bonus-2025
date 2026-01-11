@@ -1,0 +1,1 @@
+/usr/bin/c++  -w -Wno-implicit-function-declaration -Wno-implicit-int -Wno-int-conversion -Wno-return-mismatch -Wno-incompatible-pointer-types -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/cache-scratch.dir/link.d "CMakeFiles/cache-scratch.dir/cache-scratch/cache-scratch.cpp.o" -o cache-scratch  -lpthread

@@ -1,0 +1,1 @@
+/usr/bin/c++  -w -Wno-implicit-function-declaration -Wno-implicit-int -Wno-int-conversion -Wno-return-mismatch -Wno-incompatible-pointer-types -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/larson.dir/link.d CMakeFiles/larson.dir/larson/larson.cpp.o -o larson  -lpthread

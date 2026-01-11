@@ -1,0 +1,2 @@
+# Empty compiler generated dependencies file for invalid_free_far_small.
+# This may be replaced when dependencies are built.

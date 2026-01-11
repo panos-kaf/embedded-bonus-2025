@@ -1,0 +1,1 @@
+/usr/bin/cc  -w -Wno-implicit-function-declaration -Wno-implicit-int -Wno-int-conversion -Wno-return-mismatch -Wno-incompatible-pointer-types -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/xmalloc-test.dir/link.d "CMakeFiles/xmalloc-test.dir/xmalloc-test/xmalloc-test.c.o" -o xmalloc-test  -lpthread

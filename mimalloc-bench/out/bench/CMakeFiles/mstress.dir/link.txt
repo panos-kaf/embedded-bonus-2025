@@ -1,0 +1,1 @@
+/usr/bin/cc  -w -Wno-implicit-function-declaration -Wno-implicit-int -Wno-int-conversion -Wno-return-mismatch -Wno-incompatible-pointer-types -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/mstress.dir/link.d CMakeFiles/mstress.dir/mstress/mstress.c.o -o mstress  -lpthread

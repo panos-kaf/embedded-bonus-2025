@@ -1,0 +1,1 @@
+/usr/bin/cc  -w -Wno-implicit-function-declaration -Wno-implicit-int -Wno-int-conversion -Wno-return-mismatch -Wno-incompatible-pointer-types -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/glibc-simple.dir/link.d "CMakeFiles/glibc-simple.dir/glibc-bench/bench-malloc-simple.c.o" -o glibc-simple  -lpthread

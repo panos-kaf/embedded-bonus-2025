@@ -1,0 +1,1 @@
+/usr/bin/c++  -w -Wno-implicit-function-declaration -Wno-implicit-int -Wno-int-conversion -Wno-return-mismatch -Wno-incompatible-pointer-types -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/delete_type_size_mismatch.dir/link.d CMakeFiles/delete_type_size_mismatch.dir/delete_type_size_mismatch.cc.o -o delete_type_size_mismatch
