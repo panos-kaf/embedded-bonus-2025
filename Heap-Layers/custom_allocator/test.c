@@ -23,9 +23,10 @@ void* worker(void* arg) {
         // 2. Allocate
         volatile char* ptr = (char*)malloc(size);
         if (!ptr) {
-            fprintf(stderr, "Thread %d: malloc failed!\n", id);
+            printf("Thread %d: malloc failed!\n", id);
             exit(1);
         }
+        printf("Thread %d: Allocated %zu bytes.\n", id, size);
 
         // 3. Touch memory (force the page to actually be mapped)
         ptr[0] = (char)i;
