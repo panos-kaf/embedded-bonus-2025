@@ -1,22 +1,19 @@
 #pragma once
 #include "heaplayers.h"
 #include <mutex>
+#include "malign.h"
 
-// =========================================================================
 // 1. RAW SOURCES (Where bytes come from)
-// =========================================================================
 
 // Infinite Memory (The "City Water Main")
 using SourceMmap = HL::MmapHeap; 
 
 // Fixed Memory (The "Bucket")
-template <size_t Size = 1024 * 1024>
+template <size_t Size = 1024 * 1024> // 1 MB default
 using SourceStatic = HL::StaticBufferHeap<Size>;
 
 
-// =========================================================================
 // 2. LAYOUTS (How we organize bytes)
-// =========================================================================
 
 // Strategy A: The "Cookie Cutter" (Zone) - Fast, No free()
 template <class Source, int ChunkSize = 64 * 1024>
@@ -27,9 +24,7 @@ template <class Source>
 using LayoutFreelist = HL::FreelistHeap<Source>;
 
 
-// =========================================================================
 // 3. POLICIES (The Traffic Cops) - ** NEW SECTION **
-// =========================================================================
 
 // Router A: The "Hybrid Splitter" (SizeHeap)
 // Routes small allocs to 'SmallHeap', large allocs to 'BigHeap'.
@@ -53,9 +48,7 @@ using PolicyBuckets = HL::SegHeap<
     BigHeap               // BigHeap (fallback: same heap type)
 >;
 
-// =========================================================================
 // 4. ADAPTERS (Concurrency & Safety)
-// =========================================================================
 
 // Thread Safety: Global Lock
 template <class Heap>
@@ -65,18 +58,15 @@ using AdapterLocked = HL::LockedHeap<std::recursive_mutex, Heap>;
 template <class Heap>
 using AdapterPerThread = HL::ThreadSpecificHeap<Heap>;
 
-
-// =========================================================================
 // 5. PRE-BUILT RECIPES
-// =========================================================================
 
 // RECIPE 1: The "Embedded" (Simple)
-using AllocatorEmbedded = AdapterLocked<LayoutFreelist<SourceStatic<1024*1024>>>;
+//using SimpleBuffer = AdapterLocked<LayoutFreelist<SourceStatic<1024*1024>>>;
+using SimpleBuffer = AdapterLocked<LayoutFreelist<Malign<16, SourceStatic<64 * 1024 * 1024>>>>;
+using SimpleMmap = AdapterLocked<LayoutFreelist<SourceMmap>>;
 
 // RECIPE 2: The "Scratchpad" (Fastest)
-using AllocatorScratchpad = AdapterPerThread<LayoutZone<SourceMmap>>;
-
-// --- NEW RECIPES USING POLICIES ---
+using MmapArena = AdapterPerThread<LayoutZone<SourceMmap>>;
 
 // RECIPE 3: The "Smart Hybrid" (SizeHeap)
 // Scenario: We want fast Zones for small items, but we don't want to 
@@ -87,9 +77,8 @@ using _BigPath   = LayoutFreelist<SourceMmap>;  // Smart!
 // 2. Combine them (Split at 256 bytes)
 using _Hybrid    = PolicySplitter<256, _SmallPath, _BigPath>;
 // 3. Lock it
-using AllocatorHybridLocked = AdapterLocked<_Hybrid>;
-using AllocatorHybridPerThread = AdapterPerThread<_Hybrid>;
-
+using HybridLocked = AdapterLocked<_Hybrid>;
+using HybridPerThread = AdapterPerThread<_Hybrid>;
 
 // RECIPE 4: The "Pro Tier" (Segregated + PerThread)
 // This mimics Mimalloc / TCMalloc architecture.
@@ -99,20 +88,15 @@ using _Global = AdapterLocked<SourceMmap>;
 using _SmallHeap   = LayoutZone<_Global>;
 using _BigHeap     = LayoutFreelist<_Global>;
 // 3. The Buckets (Array of Pages)
-//    SizeLinearPolicy means buckets are 8, 16, 24, 32...
 using _Buckets = PolicyBuckets<
     256,                              // NumBins
-    Kingsley::size2Class, // size -> class
-    Kingsley::class2Size, // class -> max size
+    Kingsley::size2Class,             // size -> class
+    Kingsley::class2Size,             // class -> max size
     _SmallHeap,                       // LittleHeap
     _BigHeap                          // BigHeap
 >;
 // 4. Thread Local Interface (No locks on fast path)
-using AllocatorPro = AdapterPerThread<_Buckets>;
-
-// =========================================================================
-// 6. FINAL SELECTION
-// =========================================================================
+using Segregated = AdapterPerThread<_Buckets>;
 
 // Final ANSI Wrapper
 template <class Allocator>

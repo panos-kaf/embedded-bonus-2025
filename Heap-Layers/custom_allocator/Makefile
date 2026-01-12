@@ -1,31 +1,31 @@
 CXX = g++
 CXXFLAGS = -O3 -fPIC -I.. 
+TARGET_DIR= libs
+all: SimpleBuffer SimpleMmap MmapArena HybridLocked HybridPerThread Segregated
 
-# typedef AllocatorEmbedded   ;
-# typedef AllocatorScratchpad CurrentAllocator;
-# typedef AllocatorHybridLocked     CurrentAllocator;
-# typedef AllocatorHybridPerThread CurrentAllocator;
-# typedef AllocatorPro        CurrentAllocator;
+SimpleBuffer:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleBuffer \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleBuffer.so
 
-AllocatorEmbedded:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=AllocatorEmbedded \
-		-shared custom_allocator.cpp -o libhl_AllocatorEmbedded.so
+SimpleMmap:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleMmap \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleMmap.so
 
-AllocatorScratchpad:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=AllocatorScratchpad \
-		-shared custom_allocator.cpp -o libhl_AllocatorScratchpad.so
+MmapArena:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=MmapArena \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_MmapArena.so
 
-AllocatorHybridLocked:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=AllocatorHybridLocked \
-		-shared custom_allocator.cpp -o libhl_AllocatorHybridLocked.so
+HybridLocked:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridLocked \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridLocked.so
 
-AllocatorHybridPerThread:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=AllocatorHybridPerThread \
-		-shared custom_allocator.cpp -o libhl_AllocatorHybridPerThread.so
+HybridPerThread:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridPerThread \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridPerThread.so
 
-AllocatorPro:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=AllocatorPro \
-		-shared custom_allocator.cpp -o libhl_AllocatorPro.so
+Segregated:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=Segregated \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Segregated.so
 
 clean:
-	rm -f *.so
+	rm -f $(TARGET_DIR)/*.so
