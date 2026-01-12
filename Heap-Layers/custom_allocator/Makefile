@@ -1,7 +1,7 @@
 CXX = g++
-CXXFLAGS = -O3 -fPIC -I.. 
+CXXFLAGS = -g -O3 -fPIC -I.. 
 TARGET_DIR= libs
-all: SimpleBuffer SimpleMmap MmapArena HybridLocked HybridPerThread Segregated
+all: SimpleBuffer SimpleMmap MmapArena Hybrid Segregated test #HybridLocked HybridPerThread 
 
 SimpleBuffer:
 	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleBuffer \
@@ -15,6 +15,10 @@ MmapArena:
 	$(CXX) $(CXXFLAGS) -DHL_POLICY=MmapArena \
 		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_MmapArena.so
 
+Hybrid:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=Hybrid \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Hybrid.so
+
 HybridLocked:
 	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridLocked \
 		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridLocked.so
@@ -27,5 +31,7 @@ Segregated:
 	$(CXX) $(CXXFLAGS) -DHL_POLICY=Segregated \
 		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Segregated.so
 
+test:
+	gcc -g -O0 -pthread test.c -o test
 clean:
-	rm -f $(TARGET_DIR)/*.so
+	rm -f $(TARGET_DIR)/*.so test

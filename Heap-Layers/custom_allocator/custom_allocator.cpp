@@ -6,7 +6,7 @@
 #endif
 
 using Heap = TheAllocator<HL_POLICY>;
-static Heap theHeap;
+Heap theHeap;
 
 extern "C" {
 

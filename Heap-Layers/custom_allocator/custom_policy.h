@@ -72,13 +72,35 @@ using MmapArena = AdapterPerThread<LayoutZone<SourceMmap>>;
 // Scenario: We want fast Zones for small items, but we don't want to 
 // waste memory for large items.
 // 1. Define the two paths
-using _SmallPath = LayoutZone<SourceMmap>;      // Fast!
-using _BigPath   = LayoutFreelist<SourceMmap>;  // Smart!
-// 2. Combine them (Split at 256 bytes)
-using _Hybrid    = PolicySplitter<256, _SmallPath, _BigPath>;
-// 3. Lock it
-using HybridLocked = AdapterLocked<_Hybrid>;
-using HybridPerThread = AdapterPerThread<_Hybrid>;
+// using _SmallPath = LayoutZone<SourceMmap>;      // Fast!
+// using _BigPath   = LayoutFreelist<SourceMmap>;  // Smart!
+// // 2. Combine them (Split at 256 bytes)
+// using _Hybrid    = PolicySplitter<256, _SmallPath, _BigPath>;
+// // 3. Lock it
+// using HybridLocked = AdapterLocked<_Hybrid>;
+// using HybridPerThread = AdapterPerThread<_Hybrid>;
+
+
+// A. Small Objects (Fast Path)
+//    - Uses a Zone (Bump Pointer) for speed.
+//    - ZoneHeap automatically checks "contains(ptr)" so we know if a ptr belongs here.
+using _SmallPath = HL::SizeHeap<HL::ZoneHeap<SourceMmap, 64 * 1024>>; 
+
+// using _SmallPath = HL::FreelistHeap<SourceMmap>;
+// B. Big Objects (Slow Path)
+//    - Uses direct mmap for large objects.
+//    - No FreelistHeap (to avoid header collisions).
+using _BigPath = SourceMmap;
+
+// C. The Router (HybridHeap)
+//    - Splits at 8192 bytes.
+//    - Free logic: If _SmallPath.contains(ptr), free to Small. Else free to Big.
+using _Hybrid = Malign<16, HL::HybridHeap<8192, _SmallPath, _BigPath>>;
+
+// D. Safety & Alignment
+//    - Lock it (Thread Safe).
+//    - Malign it (16-byte aligned).
+using Hybrid = HL::LockedHeap<std::recursive_mutex, Malign<16, _Hybrid>>;
 
 // RECIPE 4: The "Pro Tier" (Segregated + PerThread)
 // This mimics Mimalloc / TCMalloc architecture.
@@ -86,7 +108,7 @@ using HybridPerThread = AdapterPerThread<_Hybrid>;
 using _Global = AdapterLocked<SourceMmap>;
 // 2. The Page Factory (Zones that pull from Global)
 using _SmallHeap   = LayoutZone<_Global>;
-using _BigHeap     = LayoutFreelist<_Global>;
+using _BigHeap     = HL::SizeHeap<LayoutFreelist<_Global>>;
 // 3. The Buckets (Array of Pages)
 using _Buckets = PolicyBuckets<
     256,                              // NumBins
@@ -96,7 +118,7 @@ using _Buckets = PolicyBuckets<
     _BigHeap                          // BigHeap
 >;
 // 4. Thread Local Interface (No locks on fast path)
-using Segregated = AdapterPerThread<_Buckets>;
+using Segregated = AdapterPerThread<HL::SizeHeap<_Buckets>>;
 
 // Final ANSI Wrapper
 template <class Allocator>

@@ -10,6 +10,7 @@ class Malign : public Super {
 public:
     inline void* malloc(size_t sz) {
         // HL::align handles the rounding (e.g., 1 -> 16, 13 -> 16, 17 -> 32)
+        if (sz < Alignment) sz = Alignment;
         return Super::malloc(HL::align<Alignment>(sz));
     }
     
