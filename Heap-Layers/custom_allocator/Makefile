@@ -1,37 +1,29 @@
 CXX = g++
-CXXFLAGS = -g -O3 -fPIC -I.. 
-TARGET_DIR= libs
-all: SimpleBuffer SimpleMmap MmapArena Hybrid Segregated test #HybridLocked HybridPerThread 
+CXXFLAGS = -g -O3 -fPIC -I..
+TARGET_DIR = libs
 
-SimpleBuffer:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleBuffer \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleBuffer.so
+# 1. Define the list of Policy names
+POLICIES = SimpleBuffer SimpleMmap SimpleSys MmapArena Hybrid Segregated StrictSeg SegregatedPerThread # HybridLocked HybridPerThread
 
-SimpleMmap:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleMmap \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleMmap.so
+# 2. Generate the list of expected library files
+TARGET_LIBS = $(patsubst %, $(TARGET_DIR)/hl_%.so, $(POLICIES))
 
-MmapArena:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=MmapArena \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_MmapArena.so
+# Mark the policy names as phony targets (so they work even if a file named 'SimpleBuffer' exists)
+.PHONY: all clean rebuild $(POLICIES)
 
-Hybrid:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=Hybrid \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Hybrid.so
+all: $(TARGET_LIBS) test
 
-HybridLocked:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridLocked \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridLocked.so
+$(TARGET_LIBS): $(TARGET_DIR)/hl_%.so : custom_allocator.cpp
+	@mkdir -p $(TARGET_DIR)
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=$* -shared $< -o $@
 
-HybridPerThread:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridPerThread \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridPerThread.so
+$(POLICIES): % : $(TARGET_DIR)/hl_%.so
+	@echo "Build complete for policy: $@"
 
-Segregated:
-	$(CXX) $(CXXFLAGS) -DHL_POLICY=Segregated \
-		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Segregated.so
-
-test:
+test: test.c
 	gcc -g -O0 -pthread test.c -o test
+
 clean:
 	rm -f $(TARGET_DIR)/*.so test
+
+rebuild: clean all
