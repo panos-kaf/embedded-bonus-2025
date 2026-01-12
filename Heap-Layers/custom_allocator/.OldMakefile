@@ -1,0 +1,53 @@
+CXX = g++
+CXXFLAGS = -g -O3 -fPIC -I.. 
+TARGET_DIR= libs
+all: SimpleBuffer SimpleMmap SimpleSys MmapArena Hybrid Segregated StrictSeg SegregatedPerThread test #HybridLocked HybridPerThread 
+
+SimpleBuffer:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleBuffer \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleBuffer.so
+
+SimpleMmap:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleMmap \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleMmap.so
+
+SimpleSys:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=SimpleSys \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SimpleSys.so
+
+MmapArena:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=MmapArena \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_MmapArena.so
+
+Hybrid:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=Hybrid \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Hybrid.so
+
+HybridLocked:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridLocked \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridLocked.so
+
+HybridPerThread:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=HybridPerThread \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_HybridPerThread.so
+
+Segregated:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=Segregated \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_Segregated.so
+
+StrictSeg:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=StrictSeg \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_StrictSeg.so
+
+SegregatedPerThread:
+	$(CXX) $(CXXFLAGS) -DHL_POLICY=SegregatedPerThread \
+		-shared custom_allocator.cpp -o $(TARGET_DIR)/libhl_SegregatedPerThread.so
+
+test:
+	gcc -g -O0 -pthread test.c -o test
+clean:
+	rm -f $(TARGET_DIR)/*.so test
+
+rebuild:
+	make clean
+	make
