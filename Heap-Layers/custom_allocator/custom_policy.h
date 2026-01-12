@@ -69,9 +69,9 @@ using PerThread = HL::ThreadSpecificHeap<Heap>;
 
 // 5. PRE-BUILT RECIPES
 
-// RECIPE 1: The "Embedded" (Simple)
-//using SimpleBuffer = LockMutex<LayoutFreelist<SourceStatic<1024*1024>>>;
+// RECIPE 1: Simple Allocators
 using SimpleBuffer = LockMutex<LayoutFreelist<Malign<16, SourceStatic<64 * 1024 * 1024>>>>;
+
 using SimpleMmap = LockMutex<LayoutFreelist<SourceMmap>>;
 
 using SimpleSys = LockMutex<LayoutFreelist<SourceSysMalloc>>;
@@ -82,43 +82,31 @@ using MmapArena = PerThread<LayoutZone<SourceMmap>>;
 // RECIPE 3: The "Smart Hybrid" (SizeHeap)
 // Scenario: We want fast Zones for small items, but we don't want to 
 // waste memory for large items.
+
+// needs work
+/*
 // 1. Define the two paths
-// using _SmallPath = LayoutZone<SourceMmap>;      // Fast!
-// using _BigPath   = LayoutFreelist<SourceMmap>;  // Smart!
-// // 2. Combine them (Split at 256 bytes)
-// using _Hybrid    = PolicySplitter<256, _SmallPath, _BigPath>;
-// // 3. Lock it
-// using HybridLocked = LockMutex<_Hybrid>;
-// using HybridPerThread = PerThread<_Hybrid>;
+using _SmallPath = LayoutZone<SourceMmap>;      // Fast!
+using _BigPath   = LayoutFreelist<SourceMmap>;  // Smart!
+// 2. Combine them (Split at 256 bytes)
+using _Hybrid    = PolicySplitter<256, _SmallPath, _BigPath>;
+// 3. Lock it
+using HybridLocked = LockMutex<_Hybrid>;
+using HybridPerThread = PerThread<_Hybrid>;
+*/
 
+using HybridSmallPath = HL::FreelistHeap<Malign<16, LayoutZone<SourceMmap, 4096>>>;
+using HybridBigPath = HL::SizeHeap<SourceMmap>;
+using _Hybrid = Malign<16, HL::HybridHeap<8192, HybridSmallPath, HybridBigPath>>;
+using Hybrid = HL::LockedHeap<std::recursive_mutex, _Hybrid>;
 
-// A. Small Objects (Fast Path)
-//    - Uses a Zone (Bump Pointer) for speed.
-//    - ZoneHeap automatically checks "contains(ptr)" so we know if a ptr belongs here.
-// using SegSmallHeap = HL::AdaptHeap<DLList, HL::SizeHeap<HL::ZoneHeap<SourceMmap, 4096>>>;
-// using SegBigPath = HL::SizeHeap<HL::UniqueHeap<HL::ZoneHeap<SourceMmap, 65536>>>;
-// using StrictSeg = HL::LockedHeap<std::recursive_mutex, HL::StrictSegHeap< 
-// 29,                               // NumBins
-// Kingsley::size2Class,             // size -> class
-// Kingsley::class2Size,             // class -> max Size
-// SegSmallHeap,                     // PerClassHeap
-// SegBigPath                        // BigHeap
-// >>;
-
+// RECIPE 3b: Segregated Heap - basically kingsley
 using SegSmallHeap = LayoutAdapt<DLList, LayoutZone<SourceMmap, 4096>>;
 using SegBigHeap = LayoutZone<SourceMmap, 65536>;
 
 using Segregated = LockMutex<PolicySeg<29, SegSmallHeap, SegBigHeap>>;
 using StrictSeg = LockMutex<PolicyStrictSeg<29, SegSmallHeap, SegBigHeap>>;
 
-// using _SmallPath = HL::FreelistHeap<SourceMmap>;
-// B. Big Objects (Slow Path)
-//    - Uses direct mmap for large objects.
-//    - No FreelistHeap (to avoid header collisions).
-using HybridSmallPath = HL::FreelistHeap<Malign<16, LayoutZone<SourceMmap, 4096>>>;
-using HybridBigPath = HL::SizeHeap<SourceMmap>;
-using _Hybrid = Malign<16, HL::HybridHeap<8192, HybridSmallPath, HybridBigPath>>;
-using Hybrid = HL::LockedHeap<std::recursive_mutex, _Hybrid>;
 
 // RECIPE 4: The "Pro Tier" (Segregated + PerThread)
 // This mimics Mimalloc / TCMalloc architecture.
@@ -129,9 +117,9 @@ using _SmallHeap   = LayoutZone<_Global>;
 using _BigHeap     = LayoutFreelist<_Global>;
 // 3. The Buckets (Array of Pages)
 using _Buckets = PolicySeg<
-    256,                              // NumBins
-    _SmallHeap,                       // LittleHeap
-    _BigHeap                          // BigHeap
+    256,
+    _SmallHeap,
+    _BigHeap                 
 >;
 // 4. Thread Local Interface (No locks on fast path)
 using SegregatedPerThread = PerThread<HL::SizeHeap<_Buckets>>;
