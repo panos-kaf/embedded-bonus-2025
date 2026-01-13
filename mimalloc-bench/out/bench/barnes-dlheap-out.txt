@@ -7,8 +7,8 @@ Run this as
      nbody     dtime       eps       tol     dtout     tstop    fcells     NPROC
     163840   0.02500    0.0500      1.00     0.250     0.075      2.00         1
 
-COMPUTESTART  =   1768141748
-COMPUTEEND    =   1768141750
+COMPUTESTART  =   1768314286
+COMPUTEEND    =   1768314288
 COMPUTETIME   =            2
 TRACKTIME     =            1
 PARTITIONTIME =            0	 0.00
