@@ -6,7 +6,7 @@
 # Allocators and tests
 # --------------------------------------------------------------------
 
-readonly alloc_all="mmap_recycling staticbuffer_recycling kingsley dlheap sys dh ff fg gd hd hm hml iso je lf lp lt mi mi-sec mi2 mi2-sec mng mesh nomesh pa rp sc scudo sg sm sn sn-sec tbb tc tcg mi-dbg mi2-dbg xmi xsmi xmi-dbg yal"
+readonly alloc_all="mmap_arena strictsegpt-32 segpt-32 segpt-64 segpt-256 mmap_recycling staticbuffer_recycling kingsley dlheap sys dh ff fg gd hd hm hml iso je lf lp lt mi mi-sec mi2 mi2-sec mng mesh nomesh pa rp sc scudo sg sm sn sn-sec tbb tc tcg mi-dbg mi2-dbg xmi xsmi xmi-dbg yal"
 readonly alloc_secure="dh ff gd hm hml iso mi-sec mi2-sec mng pa scudo sg sn-sec sg"
 alloc_run=""           # allocators to run (expanded by command line options)
 alloc_installed="sys"  # later expanded to include all installed allocators
@@ -97,6 +97,15 @@ readonly lib_rp="`find ${localdevdir}/rp/bin/*/release -name librpmallocwrap$ext
 readonly lib_tbb="$localdevdir/tbb/bench_release/libtbbmalloc_proxy$extso"
 readonly lib_tbb_dir="$(dirname $lib_tbb)"
 
+alloc_lib_add "segpt-32" "$localdevdir/heap_layers/libs/hl_SegregatedPerThread-32bins$extso"
+alloc_lib_add "segpt-64" "$localdevdir/heap_layers/libs/hl_SegregatedPerThread-64bins$extso"
+alloc_lib_add "segpt-256" "$localdevdir/heap_layers/libs/hl_SegregatedPerThread-256bins$extso"
+alloc_lib_add "strictsegpt-32" "$localdevdir/heap_layers/libs/hl_StrictSegregatedPerThread-32bins$extso"
+alloc_lib_add "mmap_arena" "$localdevdir/heap_layers/libs/hl_MmapArena$extso"
+
+alloc_lib_add "segperthread" "$localdevdir/heap_layers/libs/hl_SegregatedPerThread$extso"
+alloc_lib_add "strictseg" "$localdevdir/heap_layers/libs/hl_StrictSeg$extso"
+alloc_lib_add "segregated" "$localdevdir/heap_layers/libs/hl_Segregated$extso"
 alloc_lib_add "kingsley" "$localdevdir/heap_layers/libkingsley$extso"
 alloc_lib_add "dlheap" "$localdevdir/heap_layers/libdlheap$extso"
 alloc_lib_add "mmap_recycling" "$localdevdir/heap_layers/libhl_mmap_recycling$extso"
