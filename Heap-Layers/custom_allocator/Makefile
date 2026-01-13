@@ -3,7 +3,7 @@ CXXFLAGS = -g -O3 -fPIC -I..
 TARGET_DIR = libs
 
 # 1. Define the list of Policy names
-POLICIES = SimpleBuffer SimpleMmap SimpleSys MmapArena Hybrid Segregated StrictSeg SegregatedPerThread # HybridLocked HybridPerThread
+POLICIES = SimpleBuffer SimpleMmap SimpleSys MmapArena Segregated StrictSeg SegregatedPerThread SegregatedPerThreadPlus HybridSegregated StrictSegregatedPerThread HybridPerThread HybridLocked #Hybrid 
 
 # 2. Generate the list of expected library files
 TARGET_LIBS = $(patsubst %, $(TARGET_DIR)/hl_%.so, $(POLICIES))

@@ -111,18 +111,41 @@ using StrictSeg = LockMutex<PolicyStrictSeg<29, SegSmallHeap, SegBigHeap>>;
 // RECIPE 4: The "Pro Tier" (Segregated + PerThread)
 // This mimics Mimalloc / TCMalloc architecture.
 // 1. The Global Source (Locked once per 64KB chunk)
-using _Global = LockMutex<SourceMmap>;
+using _Global = SourceMmap;
 // 2. The Page Factory (Zones that pull from Global)
-using _SmallHeap   = LayoutZone<_Global>;
+using _SmallHeap   = LayoutZone<_Global, 8192>;   // Reduced from 64KB to 8KB
 using _BigHeap     = LayoutFreelist<_Global>;
 // 3. The Buckets (Array of Pages)
 using _Buckets = PolicySeg<
-    256,
+    32,                               // Reduced from 256 to 32 bins
     _SmallHeap,
     _BigHeap                 
 >;
 // 4. Thread Local Interface (No locks on fast path)
 using SegregatedPerThread = PerThread<HL::SizeHeap<_Buckets>>;
+
+// RECIPE 4b: Ultra-Optimized "Kingsley+" (More bins for tiny objects)
+// For workloads with high tiny allocation pressure
+using _KingsleySmallHeap = LayoutZone<_Global, 4096>;   // Even smaller chunks
+using _KingsleyBuckets = PolicySeg<
+    64,                               // More bins (sweet spot)
+    _KingsleySmallHeap,
+    _BigHeap
+>;
+using SegregatedPerThreadPlus = PerThread<HL::SizeHeap<_KingsleyBuckets>>;
+
+// RECIPE 6: Hybrid Segregated (Best of both worlds)
+// Tiny objects -> Fast zone
+// Small objects -> Segregated bins
+// Large objects -> Freelist
+using _TinyHeap = LayoutZone<SourceMmap, 2048>;
+using _SegHeap = HL::SizeHeap<PolicySeg<32, LayoutZone<_Global, 8192>, LayoutFreelist<_Global>>>;
+using _HybridSeg = HL::HybridHeap<512, _TinyHeap, _SegHeap>;
+using HybridSegregated = PerThread<_HybridSeg>;
+
+// RECIPE 7: Strict Segregated + PerThread (Lower fragmentation)
+using _StrictBuckets = PolicyStrictSeg<32, LayoutZone<_Global, 8192>, LayoutFreelist<_Global>>;
+using StrictSegregatedPerThread = PerThread<HL::SizeHeap<_StrictBuckets>>;
 
 // Final ANSI Wrapper
 template <class Allocator>
