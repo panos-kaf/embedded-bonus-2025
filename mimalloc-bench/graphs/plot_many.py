@@ -99,7 +99,7 @@ for d in data:
     else:
         d['Normalised Memory'] = 0
 
-print("Generating Time Graph...")
+#print("Generating Time Graph...")
 # create the graph for time
 ##fig = px.box(data, x="Benchmark", y="Normalised Time", color="Allocator", log_y=True, points = "all")
 #fig = px.strip(data, x="Benchmark", y="Normalised Time", color="Allocator", log_y=True)
@@ -128,7 +128,7 @@ fig.write_html("time.html")
 fig.write_image("time.png")
 fig.write_image("time.pdf")
 
-print("Generating Memory Graph...")
+#print("Generating Memory Graph...")
 # create the graph for memory
 ##fig = px.box(data, x="Benchmark", y="Normalised Memory", color="Allocator", log_y=True, points = "all")
 #fig = px.strip(data, x="Benchmark", y="Normalised Memory", color="Allocator", log_y=True)
