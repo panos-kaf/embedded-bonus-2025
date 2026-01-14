@@ -27,6 +27,9 @@ using LayoutFreelist = HL::SizeHeap<HL::FreelistHeap<Source>>;
 template <class ListType, class Source>
 using LayoutAdapt = HL::AdaptHeap<ListType, Source>;
 
+template <class Source, size_t ChunkSize>
+using LayoutUniqueZone = HL::SizeHeap<HL::UniqueHeap<HL::ZoneHeap<Source, ChunkSize>>>;
+
 // 3. POLICIES (The Traffic Cops)
 
 // Router A: The "Hybrid Splitter" (SizeHeap)
@@ -113,16 +116,19 @@ using StrictSeg = LockMutex<PolicyStrictSeg<29, SegSmallHeap, SegBigHeap>>;
 // 1. The Global Source (Locked once per 64KB chunk)
 using _Global = SourceMmap;
 // 2. The Page Factory (Zones that pull from Global)
-using _SmallHeap   = LayoutZone<_Global, 8192>;   // Reduced from 64KB to 8KB
-using _BigHeap     = LayoutFreelist<_Global>;
+using _SmallHeap   = LayoutZone<_Global, 64 * 1024>;   // Reduced from 64KB to 8KB
+using _BigHeap     = LayoutZone<_Global, 256 * 1024>;
 // 3. The Buckets (Array of Pages)
 using _Buckets = PolicySeg<
-    32,                               // Reduced from 256 to 32 bins
+    16,                               // Reduced from 256 to 32 bins
     _SmallHeap,
     _BigHeap                 
 >;
 // 4. Thread Local Interface (No locks on fast path)
-using SegregatedPerThread = PerThread<HL::SizeHeap<_Buckets>>;
+using SegregatedPerThread = PerThread<_Buckets>;
+
+using FreeSmall = LayoutFreelist<_SmallHeap>;
+using SegPTFreelist = PerThread<HL::SizeHeap<PolicySeg<16, FreeSmall, _BigHeap>>>;
 
 // RECIPE 4b: Ultra-Optimized "Kingsley+" (More bins for tiny objects)
 // For workloads with high tiny allocation pressure
@@ -132,20 +138,15 @@ using _KingsleyBuckets = PolicySeg<
     _KingsleySmallHeap,
     _BigHeap
 >;
-using SegregatedPerThreadPlus = PerThread<HL::SizeHeap<_KingsleyBuckets>>;
+using SegregatedPerThreadPlus = PerThread<_KingsleyBuckets>;
 
-// RECIPE 6: Hybrid Segregated (Best of both worlds)
-// Tiny objects -> Fast zone
-// Small objects -> Segregated bins
-// Large objects -> Freelist
-using _TinyHeap = LayoutZone<SourceMmap, 2048>;
-using _SegHeap = HL::SizeHeap<PolicySeg<32, LayoutZone<_Global, 8192>, LayoutFreelist<_Global>>>;
-using _HybridSeg = HL::HybridHeap<512, _TinyHeap, _SegHeap>;
-using HybridSegregated = PerThread<_HybridSeg>;
 
 // RECIPE 7: Strict Segregated + PerThread (Lower fragmentation)
-using _StrictBuckets = PolicyStrictSeg<32, LayoutZone<_Global, 8192>, LayoutFreelist<_Global>>;
-using StrictSegregatedPerThread = PerThread<HL::SizeHeap<_StrictBuckets>>;
+using _StrictBucketsNoFree = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, _Global>;
+using _StrictBucketsFree = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, LayoutFreelist<_Global>>;
+
+using StrictSegregatedPerThreadNoFree = PerThread<_StrictBucketsNoFree>;
+using StrictSegregatedPerThreadFree = PerThread<_StrictBucketsFree>;
 
 // Final ANSI Wrapper
 template <class Allocator>
