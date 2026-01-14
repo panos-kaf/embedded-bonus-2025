@@ -1,1 +1,1 @@
-rtime: 341.633, free/sec: 0.293 M
+rtime: 279.238, free/sec: 0.358 M

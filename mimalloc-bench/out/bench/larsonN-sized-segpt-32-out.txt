@@ -1,2 +1,2 @@
-Throughput =  2905546 operations per second, relative time: 344.169s.
+Throughput =  1925412 operations per second, relative time: 519.369s.
 Done sleeping...

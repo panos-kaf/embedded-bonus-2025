@@ -1,170 +1,180 @@
-cfrac       segpt-32 07.38 7858708 4.26 3.05 1 1962572
-cfrac       strictsegpt-32 07.01 6733404 3.89 3.05 0 1680302
-cfrac       segpt-64 04.41 102284 4.35 0.04 1 24975
-cfrac       segpt-256 04.40 102516 4.35 0.03 1 24985
-cfrac       mmap_arena 04.58 4184756 3.27 1.29 0 1045786
-cfrac       sys   02.88 2728 2.88 0.00 0 479
-cfrac       mi    02.91 2996 2.90 0.00 0 482
+cfrac       KingsleyAlloc 03.23 4988 3.22 0.00 0 618
+cfrac       KingsleySLL 03.25 4628 3.23 0.00 0 622
+cfrac       KingsleyBigChunk 03.24 4888 3.23 0.00 0 620
+cfrac       Kingsley25Bins 03.27 4736 3.25 0.00 0 616
+cfrac       Kingsley20Bins 03.23 4884 3.22 0.00 0 618
+cfrac       Kingsley16Bins 03.31 4732 3.30 0.00 0 619
 Command terminated by signal 11
-espresso    segpt-32 06.42 4173636 3.93 2.22 3 1042944
+espresso    KingsleyAlloc 03.47 4464 3.40 0.00 0 541
 Command terminated by signal 11
-espresso    strictsegpt-32 06.91 5004248 3.88 2.77 0 1250568
+espresso    KingsleySLL 03.47 4688 3.39 0.00 0 540
 Command terminated by signal 11
-espresso    segpt-64 00.04 3924 0.00 0.00 0 338
+espresso    KingsleyBigChunk 03.49 4456 3.40 0.01 0 543
 Command terminated by signal 11
-espresso    segpt-256 00.04 3940 0.00 0.00 0 347
+espresso    Kingsley25Bins 03.49 4524 3.41 0.01 0 541
 Command terminated by signal 11
-espresso    mmap_arena 04.77 3736904 3.43 1.24 0 933656
-espresso    sys   03.66 2800 3.65 0.00 0 387
-espresso    mi    03.68 2824 3.66 0.00 0 385
-barnes      segpt-32 02.03 63724 2.02 0.00 1 905
-barnes      strictsegpt-32 02.05 67512 2.04 0.00 0 365
-barnes      segpt-64 02.09 63716 2.08 0.00 0 907
-barnes      segpt-256 02.04 63556 2.03 0.00 0 916
-barnes      mmap_arena 02.04 63160 2.02 0.00 0 889
-barnes      sys   02.04 61848 2.03 0.00 0 821
-barnes      mi    02.03 61976 2.01 0.01 0 820
+espresso    Kingsley20Bins 03.50 4436 3.42 0.01 0 544
+Command terminated by signal 11
+espresso    Kingsley16Bins 03.47 4504 3.40 0.00 0 541
+barnes      KingsleyAlloc 02.05 66316 2.03 0.00 0 2137
+barnes      KingsleySLL 02.03 66404 2.02 0.00 0 2651
+barnes      KingsleyBigChunk 02.03 66316 2.02 0.01 0 1624
+barnes      Kingsley25Bins 02.05 66204 2.03 0.01 0 3673
+barnes      Kingsley20Bins 02.05 66276 2.03 0.01 0 4692
+barnes      Kingsley16Bins 02.04 66276 2.02 0.00 0 4181
 Command exited with non-zero status 127
-redis       segpt-32  1872 0.00 0.00 0 137
+redis       KingsleyAlloc  2148 0.00 0.00 0 135
 Command exited with non-zero status 127
-redis       strictsegpt-32  2020 0.00 0.00 0 136
+redis       KingsleySLL  2088 0.00 0.00 0 135
 Command exited with non-zero status 127
-redis       segpt-64  2020 0.00 0.00 0 137
+redis       KingsleyBigChunk  2148 0.00 0.00 0 136
 Command exited with non-zero status 127
-redis       segpt-256  2020 0.00 0.00 0 137
+redis       Kingsley25Bins  2024 0.00 0.00 0 136
 Command exited with non-zero status 127
-redis       mmap_arena  1892 0.00 0.00 0 136
+redis       Kingsley20Bins  2024 0.00 0.00 0 136
 Command exited with non-zero status 127
-redis       sys    2020 0.00 0.00 0 137
-Command exited with non-zero status 127
-redis       mi     2020 0.00 0.00 0 135
-larsonN-sized segpt-32 344.169 8543292 3.76 12.02 3 2134944
-larsonN-sized strictsegpt-32  9080424 2.97 12.10 11 2268847
-larsonN-sized segpt-64 11.523 323460 68.00 0.19 7 78930
-larsonN-sized segpt-256 12.339 350544 68.61 0.21 1 86680
-larsonN-sized mmap_arena  9312844 1.41 20.25 234 2327981
-larsonN-sized sys   9.918 102336 66.55 0.92 14 26471
-larsonN-sized mi    8.549 111260 65.65 0.82 0 28695
-mstressN    segpt-32 02.87 8952052 3.33 6.32 1 2074981
-Command terminated by signal 9
-mstressN    strictsegpt-32 08.07 9350548 3.70 14.75 117 2164505
+redis       Kingsley16Bins  2088 0.00 0.00 0 136
 Command terminated by signal 11
-mstressN    segpt-64 00.26 7192 0.00 0.04 18 1392
+larsonN-sized KingsleyAlloc  57496 0.02 0.07 0 12357
 Command terminated by signal 11
-mstressN    segpt-256 00.18 4620 0.00 0.02 1 667
-mstressN    mmap_arena 02.08 8358196 3.46 5.57 2 1914256
-mstressN    sys   01.13 401372 7.17 1.31 0 204202
-mstressN    mi    01.19 393536 7.32 1.50 0 217434
-rptestN     segpt-32 25.067 9269508 1.67 14.03 55 2317288
-Command terminated by signal 9
-rptestN     strictsegpt-32  9313764 1.65 35.89 646 2329382
+larsonN-sized KingsleySLL  54236 0.03 0.07 0 12477
 Command terminated by signal 11
-rptestN     segpt-64  33676 0.00 0.10 11 8041
+larsonN-sized KingsleyBigChunk  56060 5.40 0.08 0 12413
 Command terminated by signal 11
-rptestN     segpt-256  98696 0.01 0.21 1 24234
-rptestN     mmap_arena 9.699 7004852 0.88 7.94 2 1750866
-rptestN     sys   1.158 42996 2.14 0.71 0 22681
-rptestN     mi    1.123 41828 2.11 0.67 0 22467
+larsonN-sized Kingsley25Bins  57576 0.02 0.06 0 12346
 Command terminated by signal 11
-gs          segpt-32 01.00 1006836 0.25 0.53 200 249120
+larsonN-sized Kingsley20Bins  54172 0.02 0.05 0 12472
 Command terminated by signal 11
-gs          strictsegpt-32 00.83 1013452 0.25 0.48 1 250757
+larsonN-sized Kingsley16Bins  54040 0.03 0.06 0 12477
+Command terminated by signal 6
+mstressN    KingsleyAlloc 00.09 3456 0.00 0.00 0 286
 Command terminated by signal 11
-gs          segpt-64 00.11 40548 0.00 0.02 0 5206
+mstressN    KingsleySLL 00.10 3592 0.00 0.01 0 317
 Command terminated by signal 11
-gs          segpt-256 00.11 40480 0.00 0.02 0 5217
+mstressN    KingsleyBigChunk 00.07 3520 0.00 0.00 0 300
+Command terminated by signal 6
+mstressN    Kingsley25Bins 00.09 3424 0.00 0.01 0 328
+Command terminated by signal 6
+mstressN    Kingsley20Bins 00.10 3516 0.00 0.01 0 319
 Command terminated by signal 11
-gs          mmap_arena 00.73 988612 0.23 0.41 5 244650
-gs          sys   00.20 29672 0.18 0.01 5 5394
-gs          mi    00.20 29628 0.18 0.01 0 5402
+mstressN    Kingsley16Bins 00.06 3516 0.00 0.00 0 296
+Command terminated by signal 6
+rptestN     KingsleyAlloc  4292 0.00 0.03 0 559
+Command terminated by signal 11
+rptestN     KingsleySLL  3896 0.00 0.03 0 433
+Command terminated by signal 11
+rptestN     KingsleyBigChunk  4052 0.00 0.03 0 485
+Command terminated by signal 6
+rptestN     Kingsley25Bins  4044 0.00 0.04 0 461
+Command terminated by signal 6
+rptestN     Kingsley20Bins  4032 0.00 0.04 0 482
+Command terminated by signal 11
+rptestN     Kingsley16Bins  4544 0.00 0.04 0 685
+Command terminated by signal 11
+gs          KingsleyAlloc 00.27 32968 0.18 0.02 0 5683
+Command terminated by signal 11
+gs          KingsleySLL 00.27 32852 0.18 0.01 0 5680
+Command terminated by signal 11
+gs          KingsleyBigChunk 00.28 32932 0.19 0.02 0 5686
+Command terminated by signal 11
+gs          Kingsley25Bins 00.27 32828 0.18 0.02 0 5684
+Command terminated by signal 11
+gs          Kingsley20Bins 00.27 33100 0.18 0.02 0 5684
+Command terminated by signal 11
+gs          Kingsley16Bins 00.32 113828 0.19 0.04 0 25967
 Command exited with non-zero status 2
-lua         segpt-32 01.94 714896 8.62 4.87 1838 1183240
+lua         KingsleyAlloc 01.17 107392 7.64 0.67 0 140277
 Command exited with non-zero status 2
-lua         strictsegpt-32 02.49 788980 13.92 8.09 1 1316118
+lua         KingsleySLL 01.17 107260 7.43 0.66 0 134876
 Command exited with non-zero status 2
-lua         segpt-64 00.10 47932 0.46 0.51 211 142931
+lua         KingsleyBigChunk 01.14 108224 7.79 0.59 1 142669
 Command exited with non-zero status 2
-lua         segpt-256 00.10 48244 0.47 0.46 0 143133
+lua         Kingsley25Bins 01.25 106576 7.64 0.64 0 139280
 Command exited with non-zero status 2
-lua         mmap_arena 01.49 617008 8.15 2.83 1 1009138
-lua         sys   01.17 89016 7.54 0.56 25 110699
-lua         mi    01.19 88860 7.70 0.50 0 111077
-alloc-test1 segpt-32 05.03 4042496 3.72 1.29 1 1009029
-alloc-test1 strictsegpt-32 04.78 3834580 3.59 1.17 0 957009
-alloc-test1 segpt-64 03.53 539468 3.31 0.20 0 133719
-alloc-test1 segpt-256 03.54 539468 3.33 0.19 0 133736
-alloc-test1 mmap_arena 03.78 2574892 3.01 0.75 0 642610
-alloc-test1 sys   02.90 14268 2.88 0.00 0 1949
-alloc-test1 mi    02.90 14196 2.89 0.00 0 1948
-Command terminated by signal 9
-alloc-testN segpt-32 12.50 9295828 17.68 20.58 54 2324350
-Command terminated by signal 9
-alloc-testN strictsegpt-32 20.57 9296848 18.43 31.35 369 2324922
-alloc-testN segpt-64 11.91 554124 140.49 0.98 11 138147
-alloc-testN segpt-256 11.53 555132 135.92 0.95 1 138303
-Command terminated by signal 9
-alloc-testN mmap_arena 25.47 9332544 26.65 34.19 434 2333924
-alloc-testN sys   08.71 16436 100.71 0.09 10 3746
-alloc-testN mi    08.56 16588 99.14 0.06 0 3750
-Command terminated by signal 9
-sh6benchN   segpt-32 12.16 9274848 3.48 21.54 61 2319093
-Command terminated by signal 9
-sh6benchN   strictsegpt-32 38.32 9283400 3.80 46.38 675 2321853
-Command terminated by signal 9
-sh6benchN   segpt-64 23.72 9263744 4.18 33.58 423 2316642
-Command terminated by signal 9
-sh6benchN   segpt-256 29.79 9168304 4.46 40.49 668 2293429
-Command terminated by signal 9
-sh6benchN   mmap_arena 27.58 9179176 2.91 39.19 410 2295584
-sh6benchN   sys   00.95 337968 10.18 0.47 1 84453
-sh6benchN   mi    00.91 337712 10.86 0.44 0 84452
-Command terminated by signal 9
-sh8benchN   segpt-32 16.14 9426688 3.63 26.70 215 2337777
-Command terminated by signal 9
-sh8benchN   strictsegpt-32 23.77 9422512 4.47 36.28 499 2336561
+lua         Kingsley20Bins 01.13 106868 7.60 0.66 4 140255
+Command exited with non-zero status 2
+lua         Kingsley16Bins 01.22 109488 7.64 0.62 0 137482
+alloc-test1 KingsleyAlloc 02.95 15180 2.93 0.00 0 2726
+alloc-test1 KingsleySLL 02.96 15308 2.94 0.00 0 2721
+alloc-test1 KingsleyBigChunk 02.93 15180 2.91 0.00 0 2729
+alloc-test1 Kingsley25Bins 02.95 15180 2.93 0.00 0 2727
+alloc-test1 Kingsley20Bins 02.93 15308 2.92 0.00 0 2725
+alloc-test1 Kingsley16Bins 02.91 15360 2.89 0.00 0 2727
+Command terminated by signal 6
+alloc-testN KingsleyAlloc 00.15 5320 0.00 0.02 0 779
+Command terminated by signal 6
+alloc-testN KingsleySLL 00.10 4540 0.00 0.01 0 579
+Command terminated by signal 6
+alloc-testN KingsleyBigChunk 00.10 4360 0.00 0.01 0 563
 Command terminated by signal 11
-sh8benchN   segpt-64 13.28 4126136 6.48 9.26 9 1011786
+alloc-testN Kingsley25Bins 00.11 4416 0.00 0.01 0 604
+Command terminated by signal 6
+alloc-testN Kingsley20Bins 00.12 4420 0.00 0.02 0 555
+Command terminated by signal 6
+alloc-testN Kingsley16Bins 00.08 3652 0.00 0.00 0 318
+Command terminated by signal 6
+sh6benchN   KingsleyAlloc 00.13 3508 0.00 0.02 0 313
+Command terminated by signal 6
+sh6benchN   KingsleySLL 00.09 3508 0.00 0.01 0 303
+Command terminated by signal 6
+sh6benchN   KingsleyBigChunk 00.11 3644 0.00 0.01 0 296
+Command terminated by signal 6
+sh6benchN   Kingsley25Bins 00.13 3508 0.00 0.01 0 307
+Command terminated by signal 6
+sh6benchN   Kingsley20Bins 00.08 3508 0.00 0.01 0 295
+Command terminated by signal 6
+sh6benchN   Kingsley16Bins 00.13 3512 0.00 0.02 0 315
+Command terminated by signal 6
+sh8benchN   KingsleyAlloc 00.24 81332 0.00 0.08 0 6551
+Command terminated by signal 6
+sh8benchN   KingsleySLL 00.24 81452 0.00 0.09 0 8611
 Command terminated by signal 11
-sh8benchN   segpt-256 14.44 3708984 2.36 8.19 1 907472
-Command terminated by signal 9
-sh8benchN   mmap_arena 09.68 9355124 2.29 17.89 132 2319898
-sh8benchN   sys   03.49 259320 44.15 0.30 1 65135
-sh8benchN   mi    03.80 250372 46.98 0.47 0 82857
-xmalloc-testN segpt-32 341.633 6069612 1.28 9.55 13 1516980
-xmalloc-testN strictsegpt-32  7282444 3.02 12.23 1 1820214
-xmalloc-testN segpt-64 332.980 6185016 1.20 9.16 1 1545942
-xmalloc-testN segpt-256 325.839 6335044 1.15 9.50 1 1583395
-xmalloc-testN mmap_arena  9393044 3.49 18.50 199 2348535
-xmalloc-testN sys   2.435 60072 64.71 0.82 2 50565
-xmalloc-testN mi    2.532 60832 65.19 0.89 0 40522
-cache-scratch1 segpt-32 01.11 3812 1.11 0.00 15 287
-cache-scratch1 strictsegpt-32 00.89 3756 0.88 0.00 1 291
-cache-scratch1 segpt-64 00.89 3728 0.88 0.00 1 290
-cache-scratch1 segpt-256 00.88 3724 0.88 0.00 1 311
-cache-scratch1 mmap_arena 00.89 3628 0.88 0.00 1 279
-cache-scratch1 sys   00.89 3648 0.88 0.00 0 272
-cache-scratch1 mi    00.87 3472 0.87 0.00 0 270
-cache-scratchN segpt-32 00.15 3936 1.57 0.00 0 369
-cache-scratchN strictsegpt-32 00.14 3900 1.70 0.00 0 348
-cache-scratchN segpt-64 00.15 3604 1.71 0.00 0 398
-cache-scratchN segpt-256 00.14 4368 1.58 0.00 0 547
-cache-scratchN mmap_arena 00.15 3752 1.71 0.00 0 304
-cache-scratchN sys   00.14 3568 1.72 0.00 0 298
-cache-scratchN mi    00.14 3904 1.72 0.00 0 297
-Command terminated by signal 9
-glibc-simple segpt-32 10.97 9431140 1.45 8.58 110 2349273
-glibc-simple strictsegpt-32 05.56 8639996 2.22 3.28 11 2157978
-glibc-simple segpt-64 02.02 29416 2.00 0.01 1 6791
-glibc-simple segpt-256 02.03 29180 2.00 0.02 1 6809
-glibc-simple mmap_arena 03.05 5320364 1.53 1.50 1 1329584
-glibc-simple sys   02.70 1964 2.69 0.00 0 267
-glibc-simple mi    02.72 2088 2.70 0.00 0 263
-glibc-thread segpt-32 25.966 3308648 2.40 4.77 1 826752
-glibc-thread strictsegpt-32  2913952 1.87 4.87 0 728078
+sh8benchN   KingsleyBigChunk 00.23 81588 0.00 0.07 0 7577
+Command terminated by signal 6
+sh8benchN   Kingsley25Bins 00.23 81572 0.00 0.07 0 7572
 Command terminated by signal 11
-glibc-thread segpt-64  52416 0.01 0.15 0 12719
+sh8benchN   Kingsley20Bins 00.21 81532 0.00 0.08 0 7047
 Command terminated by signal 11
-glibc-thread segpt-256  59712 0.03 0.14 0 14526
-glibc-thread mmap_arena  7501772 5.40 8.92 0 1875029
-glibc-thread sys   2.155 3744 27.68 0.01 0 938
-glibc-thread mi    2.361 3612 26.38 0.01 0 938
+sh8benchN   Kingsley16Bins 00.25 81584 0.00 0.08 0 7576
+Command terminated by signal 11
+xmalloc-testN KingsleyAlloc  3452 0.00 0.01 0 287
+Command terminated by signal 11
+xmalloc-testN KingsleySLL  3520 0.00 0.01 0 289
+Command terminated by signal 11
+xmalloc-testN KingsleyBigChunk  3596 0.00 0.02 0 343
+Command terminated by signal 6
+xmalloc-testN Kingsley25Bins  3512 0.00 0.01 0 327
+Command terminated by signal 11
+xmalloc-testN Kingsley20Bins  3384 0.00 0.00 0 286
+Command terminated by signal 11
+xmalloc-testN Kingsley16Bins  3644 0.00 0.02 0 343
+cache-scratch1 KingsleyAlloc 00.84 3524 0.84 0.00 0 281
+cache-scratch1 KingsleySLL 00.85 3676 0.84 0.00 0 278
+cache-scratch1 KingsleyBigChunk 00.85 3508 0.84 0.00 0 279
+cache-scratch1 Kingsley25Bins 00.84 3584 0.84 0.00 0 278
+cache-scratch1 Kingsley20Bins 00.86 3524 0.85 0.00 0 278
+cache-scratch1 Kingsley16Bins 00.87 3516 0.87 0.00 0 278
+cache-scratchN KingsleyAlloc 00.14 3676 1.70 0.00 0 308
+cache-scratchN KingsleySLL 00.14 3688 1.69 0.00 0 306
+cache-scratchN KingsleyBigChunk 00.14 3648 1.69 0.00 0 307
+cache-scratchN Kingsley25Bins 00.14 3532 1.70 0.00 0 307
+cache-scratchN Kingsley20Bins 00.14 3652 1.69 0.00 0 307
+cache-scratchN Kingsley16Bins 00.14 3700 1.69 0.00 0 307
+glibc-simple KingsleyAlloc 01.71 3736 1.70 0.00 0 349
+glibc-simple KingsleySLL 01.72 3708 1.72 0.00 0 350
+glibc-simple KingsleyBigChunk 01.70 3832 1.69 0.00 0 350
+glibc-simple Kingsley25Bins 01.71 3648 1.71 0.00 0 348
+glibc-simple Kingsley20Bins 01.71 3744 1.70 0.00 0 347
+glibc-simple Kingsley16Bins 01.76 3536 1.74 0.00 0 349
+Command terminated by signal 6
+glibc-thread KingsleyAlloc  3568 0.00 0.01 0 369
+Command terminated by signal 6
+glibc-thread KingsleySLL  3768 0.00 0.02 0 367
+Command terminated by signal 6
+glibc-thread KingsleyBigChunk  3712 0.00 0.01 0 352
+Command terminated by signal 6
+glibc-thread Kingsley25Bins  3768 0.00 0.01 0 345
+Command terminated by signal 6
+glibc-thread Kingsley20Bins  3592 0.00 0.00 0 345
+Command terminated by signal 6
+glibc-thread Kingsley16Bins  3700 0.00 0.01 0 362

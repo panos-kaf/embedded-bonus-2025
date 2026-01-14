@@ -1,1 +1,0 @@
-start with 14 threads with a 50% load-per-thread and 25 iterations
