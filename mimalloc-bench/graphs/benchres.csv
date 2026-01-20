@@ -1,0 +1,164 @@
+cfrac       strictseglockedcustom 0:04.33 5656 4.32 0.00 1 865
+cfrac       strictsegptcustom 0:03.58 5724 3.57 0.00 0 870
+cfrac       strictseglocked-16 0:04.17 5144 4.15 0.00 0 735
+cfrac       strictsegpt-16 0:03.34 5196 3.33 0.00 1 735
+cfrac       segpt-16 0:04.99 4165964 3.62 1.35 0 1041029
+cfrac       sys   0:03.30 2636 3.28 0.00 0 480
+cfrac       mi    0:03.30 2600 3.29 0.00 0 484
+Command terminated by signal 11
+espresso    strictseglockedcustom 0:04.41 4756 4.32 0.00 3 654
+Command terminated by signal 11
+espresso    strictsegptcustom 0:04.19 4848 4.10 0.01 0 655
+Command terminated by signal 11
+espresso    strictseglocked-16 0:03.81 4592 3.74 0.01 0 584
+Command terminated by signal 11
+espresso    strictsegpt-16 0:03.48 4600 3.41 0.00 0 583
+Command terminated by signal 11
+espresso    segpt-16 0:04.97 3624048 3.57 1.31 0 905656
+espresso    sys   0:03.78 2744 3.77 0.00 0 386
+espresso    mi    0:03.72 2672 3.70 0.00 0 386
+barnes      strictseglockedcustom 0:01.75 66356 1.73 0.01 1 3660
+barnes      strictsegptcustom 0:01.71 66380 1.69 0.01 0 3662
+barnes      strictseglocked-16 0:02.33 66304 2.30 0.01 0 4683
+barnes      strictsegpt-16 0:02.67 67360 2.65 0.01 0 3399
+barnes      segpt-16 0:02.69 63520 2.67 0.00 0 892
+barnes      sys   0:03.42 61892 3.40 0.00 0 819
+barnes      mi    0:03.00 61924 2.98 0.00 0 818
+Command exited with non-zero status 127
+redis       strictseglockedcustom 0: 2104 0.00 0.00 0 137
+Command exited with non-zero status 127
+redis       strictsegptcustom 0: 2108 0.00 0.00 0 135
+Command exited with non-zero status 127
+redis       strictseglocked-16 0: 2048 0.00 0.00 0 137
+Command exited with non-zero status 127
+redis       strictsegpt-16 0: 2048 0.00 0.00 0 135
+Command exited with non-zero status 127
+redis       segpt-16 0: 2076 0.00 0.00 0 136
+Command exited with non-zero status 127
+redis       sys   0: 2048 0.00 0.00 0 135
+Command exited with non-zero status 127
+redis       mi    0: 2108 0.00 0.00 0 136
+larsonN-sized strictseglockedcustom 0: 80028 5.92 37.79 1 19008
+larsonN-sized strictsegptcustom 0: 338100 47.87 0.49 0 83152
+larsonN-sized strictseglocked-16 0: 57072 5.98 42.35 0 12843
+larsonN-sized strictsegpt-16 0: 318428 49.09 0.51 0 78142
+larsonN-sized segpt-16 0: 6912328 4.59 11.01 99 1727596
+larsonN-sized sys   0:15.363 107440 46.46 0.74 14 29093
+larsonN-sized mi    0:13.729 106276 48.87 0.78 0 28266
+Command terminated by signal 6
+mstressN    strictseglockedcustom 0:00.67 91412 0.06 0.48 1 14350
+Command terminated by signal 6
+mstressN    strictsegptcustom 0:00.54 84036 0.01 0.19 1 12961
+Command terminated by signal 11
+mstressN    strictseglocked-16 0:01.49 274416 0.46 2.67 1 65048
+Command terminated by signal 11
+mstressN    strictsegpt-16 0:01.26 320284 0.14 0.51 1 75190
+Command terminated by signal 9
+mstressN    segpt-16 0:40.62 7426320 4.21 27.97 523 1842053
+mstressN    sys   0:01.96 393728 7.58 2.67 1 689851
+mstressN    mi    0:01.58 425100 7.87 2.22 0 559415
+rptestN     strictseglockedcustom 0:8.094 1907276 3.00 12.69 10 476453
+rptestN     strictsegptcustom 0:4.154 2044012 1.44 5.62 1 510591
+rptestN     strictseglocked-16 0:6.550 1905332 2.44 12.12 1 476084
+rptestN     strictsegpt-16 0:4.318 2016192 1.28 5.87 1 503719
+Command terminated by signal 2
+rptestN     segpt-16 0: 8284 6565.80 4.36 1 1628
+rptestN     sys   0:1.146 44624 2.01 0.70 0 23839
+rptestN     mi    0:1.146 43740 2.07 0.72 0 23593
+Command terminated by signal 6
+gs          strictseglockedcustom 0:00.31 35548 0.02 0.03 168 3662
+Command terminated by signal 6
+gs          strictsegptcustom 0:00.14 35712 0.01 0.02 0 3676
+Command terminated by signal 11
+gs          strictseglocked-16 0:00.49 125696 0.18 0.12 25 26031
+Command terminated by signal 11
+gs          strictsegpt-16 0:00.50 125812 0.19 0.11 0 26032
+Command terminated by signal 11
+gs          segpt-16 0:00.72 977268 0.24 0.40 1 241750
+gs          sys   0:00.20 29252 0.18 0.01 8 5394
+gs          mi    0:00.20 29512 0.18 0.01 0 5398
+Command exited with non-zero status 2
+lua         strictseglockedcustom 0:00.87 72560 4.31 0.68 1260 99324
+Command exited with non-zero status 2
+lua         strictsegptcustom 0:00.77 73432 4.59 0.61 0 104237
+Command exited with non-zero status 2
+lua         strictseglocked-16 0:00.97 88516 7.19 0.72 21 129779
+Command exited with non-zero status 2
+lua         strictsegpt-16 0:01.09 87784 7.20 0.73 0 130456
+Command terminated by signal 2
+lua         segpt-16 4:18.39 599020 264.14 2.99 295 1002578
+lua         sys   0:01.42 87784 7.63 0.69 329 154105
+lua         mi    0:01.36 87516 7.71 0.72 1 151145
+alloc-test1 strictseglockedcustom 0:04.15 20696 4.13 0.00 1 3643
+alloc-test1 strictsegptcustom 0:03.33 21120 3.31 0.00 0 3657
+alloc-test1 strictseglocked-16 0:04.10 17308 4.08 0.00 0 2766
+alloc-test1 strictsegpt-16 0:03.15 17636 3.13 0.00 0 2777
+alloc-test1 segpt-16 0:04.27 2600172 3.56 0.69 0 649030
+alloc-test1 sys   0:02.99 13976 2.98 0.00 0 1949
+alloc-test1 mi    0:02.99 14004 2.97 0.00 0 1947
+Command terminated by signal 2
+alloc-testN strictseglockedcustom 9:00.51 21624 682.21 5225.27 0 5414
+alloc-testN strictsegptcustom 0:10.18 23544 112.29 0.12 0 5491
+Command terminated by signal 2
+alloc-testN strictseglocked-16 0:37.00 17228 46.53 353.06 0 4243
+alloc-testN strictsegpt-16 0:09.84 19584 107.58 0.12 0 4428
+Command terminated by signal 9
+alloc-testN segpt-16 0:09.95 7379608 21.20 14.71 68 1845411
+alloc-testN sys   0:09.31 16680 103.11 0.12 17 3744
+alloc-testN mi    0:09.14 16680 98.25 0.11 0 3749
+Command terminated by signal 2
+sh6benchN   strictseglockedcustom 0:36.08 203652 44.94 377.05 1 53617
+sh6benchN   strictsegptcustom 0:00.95 714824 5.68 0.62 1 178235
+Command terminated by signal 2
+sh6benchN   strictseglocked-16 0:01.31 9280 1.71 11.84 1 2137
+sh6benchN   strictsegpt-16 0:00.64 533032 3.58 0.45 1 132841
+Command terminated by signal 9
+sh6benchN   segpt-16 0:16.63 7425804 3.74 21.80 177 1857118
+sh6benchN   sys   0:00.93 337936 9.87 0.37 1 84451
+sh6benchN   mi    0:00.98 337936 10.70 0.43 0 84454
+Command terminated by signal 6
+sh8benchN   strictseglockedcustom 0:01.27 164116 0.48 4.68 12 42939
+Command terminated by signal 6
+sh8benchN   strictsegptcustom 0:00.65 110444 0.02 0.21 1 20634
+Command terminated by signal 2
+sh8benchN   strictseglocked-16 0:06.93 150488 8.51 69.75 1 34741
+sh8benchN   strictsegpt-16 0:02.03 648524 20.36 0.59 2 157269
+Command terminated by signal 9
+sh8benchN   segpt-16 0:26.47 7452084 4.52 30.89 384 1857710
+sh8benchN   sys   0:04.00 252912 43.23 0.30 1 61295
+sh8benchN   mi    0:03.93 302736 42.52 0.43 0 96060
+xmalloc-testN strictseglockedcustom 0: 11592 6.16 50.60 11 2588
+xmalloc-testN strictsegptcustom 0: 7430288 3.55 14.52 170 1857863
+xmalloc-testN strictseglocked-16 0: 9360 6.27 49.91 19 2471
+xmalloc-testN strictsegpt-16 0: 7442904 3.92 16.49 247 1860943
+xmalloc-testN segpt-16 0: 7452844 4.31 14.86 267 1863518
+xmalloc-testN sys   0:2.897 62356 54.31 0.70 2 47847
+xmalloc-testN mi    0:2.880 64224 56.46 0.75 0 43724
+cache-scratch1 strictseglockedcustom 0:01.26 3804 1.26 0.00 10 284
+cache-scratch1 strictsegptcustom 0:00.94 3828 0.93 0.00 1 295
+cache-scratch1 strictseglocked-16 0:00.86 3696 0.86 0.00 1 288
+cache-scratch1 strictsegpt-16 0:00.87 3640 0.87 0.00 1 289
+cache-scratch1 segpt-16 0:00.89 3692 0.88 0.00 1 280
+cache-scratch1 sys   0:00.87 3664 0.87 0.00 0 272
+cache-scratch1 mi    0:00.91 3656 0.91 0.00 0 269
+cache-scratchN strictseglockedcustom 0:00.22 3716 1.59 0.00 0 315
+cache-scratchN strictsegptcustom 0:00.18 4032 1.90 0.00 0 346
+cache-scratchN strictseglocked-16 0:00.20 3972 2.11 0.00 0 315
+cache-scratchN strictsegpt-16 0:00.22 3936 2.31 0.00 0 328
+cache-scratchN segpt-16 0:00.23 3736 2.50 0.00 0 320
+cache-scratchN sys   0:00.26 3632 2.49 0.00 0 297
+cache-scratchN mi    0:00.29 3764 2.73 0.00 0 297
+glibc-simple strictseglockedcustom 0:03.93 3740 3.92 0.00 0 401
+glibc-simple strictsegptcustom 0:01.96 4240 1.95 0.00 0 521
+glibc-simple strictseglocked-16 0:03.33 3476 3.31 0.00 0 382
+glibc-simple strictsegpt-16 0:01.63 3956 1.62 0.00 0 471
+glibc-simple segpt-16 0:03.47 5320052 1.85 1.60 0 1329605
+glibc-simple sys   0:02.76 1904 2.75 0.00 0 265
+glibc-simple mi    0:02.72 1956 2.71 0.00 0 264
+glibc-thread strictseglockedcustom 0: 6068 2.28 20.28 0 1145
+glibc-thread strictsegptcustom 0: 8800 24.68 0.02 0 1793
+glibc-thread strictseglocked-16 0: 5564 2.42 17.99 0 1017
+glibc-thread strictsegpt-16 0: 8160 25.31 0.03 0 1558
+glibc-thread segpt-16 0: 5221084 6.32 5.12 0 1304914
+glibc-thread sys   0:2.557 3612 22.96 0.02 0 932
+glibc-thread mi    0:2.503 3740 26.38 0.01 0 937

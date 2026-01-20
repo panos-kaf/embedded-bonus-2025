@@ -2,6 +2,27 @@ import sys
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
+def parse_time(t):
+    """
+    Parse time in formats:
+      M:SS
+      M:SS.xx
+      H:MM:SS
+    Returns seconds (float) or None if invalid.
+    """
+    parts = t.split(":")
+    try:
+        if len(parts) == 2:
+            m, s = parts
+            return int(m) * 60 + float(s)
+        elif len(parts) == 3:
+            h, m, s = parts
+            return int(h) * 3600 + int(m) * 60 + float(s)
+    except ValueError:
+        return None
+    return None
+
+
 def main():
     if len(sys.argv) != 2:
         print(f"Usage: {sys.argv[0]} <benchmark_file>")
@@ -9,7 +30,7 @@ def main():
 
     input_file = sys.argv[1]
 
-    # (benchmark, allocator) -> list of (time, memory)
+    # (benchmark, allocator) -> list of (time_sec, memory)
     data = defaultdict(list)
 
     skip_next = False
@@ -17,31 +38,35 @@ def main():
     with open(input_file, "r") as f:
         for line in f:
             line = line.strip()
+            if not line:
+                continue
 
-            # If previous line indicated termination, skip this benchmark line
+            # Skip benchmark result following a crash/termination line
             if skip_next:
                 skip_next = False
                 continue
 
-            # Detect early termination
             if line.startswith("Command terminated") or line.startswith("Command exited"):
                 skip_next = True
                 continue
 
             parts = line.split()
-            if len(parts) < 7:
+            if len(parts) < 4:
                 continue
 
             benchmark = parts[0]
             allocator = parts[1]
 
+            time_sec = parse_time(parts[2])
             try:
-                time = float(parts[2])
                 memory = float(parts[3])
             except ValueError:
                 continue
 
-            data[(benchmark, allocator)].append((time, memory))
+            if time_sec is None:
+                continue
+
+            data[(benchmark, allocator)].append((time_sec, memory))
 
     if not data:
         print("No valid benchmark data found.")
@@ -54,42 +79,31 @@ def main():
     avg_memory = defaultdict(dict)
 
     for (bench, alloc), values in data.items():
-        if not values:
-            continue
         avg_time[alloc][bench] = sum(v[0] for v in values) / len(values)
         avg_memory[alloc][bench] = sum(v[1] for v in values) / len(values)
 
-    # Assign one color per allocator
+    # One color per allocator
     color_map = dict(zip(allocators, plt.cm.tab10(range(len(allocators)))))
 
     x = range(len(benchmarks))
     width = 0.8 / len(allocators)
 
-    # -------- Plot: Average Time --------
-    plt.figure(figsize=(14, 6))
+    # ---------- Average Time ----------
+    plt.figure(figsize=(18, 6))
 
     for i, alloc in enumerate(allocators):
-        times = [
-            avg_time[alloc][b]
-            for b in benchmarks
-            if b in avg_time[alloc]
-        ]
-        x_pos = [
-            p + i * width
-            for p, b in zip(x, benchmarks)
-            if b in avg_time[alloc]
-        ]
+        times = []
+        x_pos = []
 
-        plt.bar(
-            x_pos,
-            times,
-            width=width,
-            label=alloc,
-            color=color_map[alloc],
-        )
+        for p, b in zip(x, benchmarks):
+            if b in avg_time[alloc]:
+                times.append(avg_time[alloc][b])
+                x_pos.append(p + i * width)
+
+        plt.bar(x_pos, times, width=width, label=alloc, color=color_map[alloc])
 
     plt.yscale("log")
-    plt.ylabel("Average Time (log scale)")
+    plt.ylabel("Average Time (seconds, log scale)")
     plt.title("Average Execution Time per Benchmark")
     plt.xticks(
         [p + width * (len(allocators) / 2) for p in x],
@@ -97,36 +111,31 @@ def main():
         rotation=45,
         ha="right",
     )
-    plt.legend()
-    plt.tight_layout()
-#    plt.show()
-    plt.savefig('time.svg')
+    plt.legend(
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+        borderaxespad=0.0,
+    )
+    plt.tight_layout(rect=[0, 0, 0.85, 1])
 
-    # -------- Plot: Average Memory --------
-    plt.figure(figsize=(14, 6))
+    plt.savefig("time.svg")
+
+    # ---------- Average Memory ----------
+    plt.figure(figsize=(18, 6))
 
     for i, alloc in enumerate(allocators):
-        mems = [
-            avg_memory[alloc][b]
-            for b in benchmarks
-            if b in avg_memory[alloc]
-        ]
-        x_pos = [
-            p + i * width
-            for p, b in zip(x, benchmarks)
-            if b in avg_memory[alloc]
-        ]
+        mems = []
+        x_pos = []
 
-        plt.bar(
-            x_pos,
-            mems,
-            width=width,
-            label=alloc,
-            color=color_map[alloc],
-        )
+        for p, b in zip(x, benchmarks):
+            if b in avg_memory[alloc]:
+                mems.append(avg_memory[alloc][b])
+                x_pos.append(p + i * width)
+
+        plt.bar(x_pos, mems, width=width, label=alloc, color=color_map[alloc])
 
     plt.yscale("log")
-    plt.ylabel("Average Memory (log scale)")
+    plt.ylabel("Average Memory (KB, log scale)")
     plt.title("Average Memory Usage per Benchmark")
     plt.xticks(
         [p + width * (len(allocators) / 2) for p in x],
@@ -134,10 +143,14 @@ def main():
         rotation=45,
         ha="right",
     )
-    plt.legend()
-    plt.tight_layout()
-#   plt.show()
-    plt.savefig('memory.svg')
+    plt.legend(
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+        borderaxespad=0.0,
+    )
+    plt.tight_layout(rect=[0, 0, 0.85, 1])
+
+    plt.savefig("memory.svg")
 
 
 if __name__ == "__main__":
