@@ -2,8 +2,9 @@
 #include <mutex>
 #include "heaplayers.h"
 
-// ---- Base building blocks ----
+// Base building blocks
 using BaseHeap = HL::StaticBufferHeap<1024 * 1024>; // 1 MB buffer
+using BaseMmap = HL::MmapHeap;
 
 // Locking
 using Locked = HL::LockedHeap<std::recursive_mutex, BaseHeap>;
