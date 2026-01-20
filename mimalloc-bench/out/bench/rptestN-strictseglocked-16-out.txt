@@ -1,0 +1,1 @@
+crt          14 threads random linear size [8,16000] 500 loops 1000 allocs 100 ops: ........................................................305343 memory ops/CPU second (1860MiB peak, 29MiB -> 1861MiB bytes sample, 6165% overhead)

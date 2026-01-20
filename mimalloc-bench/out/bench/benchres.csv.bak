@@ -1,180 +1,234 @@
-cfrac       KingsleyAlloc 0:03.23 4988 3.22 0.00 0 618
-cfrac       KingsleySLL 0:03.25 4628 3.23 0.00 0 622
-cfrac       KingsleyBigChunk 0:03.24 4888 3.23 0.00 0 620
-cfrac       Kingsley25Bins 0:03.27 4736 3.25 0.00 0 616
-cfrac       Kingsley20Bins 0:03.23 4884 3.22 0.00 0 618
-cfrac       Kingsley16Bins 0:03.31 4732 3.30 0.00 0 619
+cfrac       strictseglockedcustom 0:04.40 5840 4.38 0.00 0 866
+cfrac       strictsegptcustom 0:03.50 5880 3.48 0.00 0 869
+cfrac       strictseglocked-16 0:04.19 5060 4.16 0.00 0 734
+cfrac       strictsegpt-16 0:02.98 3040 2.97 0.00 0 482
+cfrac       segpt-16 0:05.12 4165892 3.67 1.42 0 1041032
+cfrac       sys   0:03.75 3156 3.74 0.00 0 480
+cfrac       mi    0:03.60 3120 3.58 0.00 0 482
 Command terminated by signal 11
-espresso    KingsleyAlloc 0:03.47 4464 3.40 0.00 0 541
+espresso    strictseglockedcustom 0:06.13 4752 5.94 0.01 0 652
 Command terminated by signal 11
-espresso    KingsleySLL 0:03.47 4688 3.39 0.00 0 540
+espresso    strictsegptcustom 0:05.31 4804 5.21 0.01 0 657
 Command terminated by signal 11
-espresso    KingsleyBigChunk 0:03.49 4456 3.40 0.01 0 543
+espresso    strictseglocked-16 0:04.42 4676 4.34 0.01 0 583
+espresso    strictsegpt-16 0:04.39 2720 4.35 0.00 0 385
 Command terminated by signal 11
-espresso    Kingsley25Bins 0:03.49 4524 3.41 0.01 0 541
-Command terminated by signal 11
-espresso    Kingsley20Bins 0:03.50 4436 3.42 0.01 0 544
-Command terminated by signal 11
-espresso    Kingsley16Bins 0:03.47 4504 3.40 0.00 0 541
-barnes      KingsleyAlloc 0:02.05 66316 2.03 0.00 0 2137
-barnes      KingsleySLL 0:02.03 66404 2.02 0.00 0 2651
-barnes      KingsleyBigChunk 0:02.03 66316 2.02 0.01 0 1624
-barnes      Kingsley25Bins 0:02.05 66204 2.03 0.01 0 3673
-barnes      Kingsley20Bins 0:02.05 66276 2.03 0.01 0 4692
-barnes      Kingsley16Bins 0:02.04 66276 2.02 0.00 0 4181
+espresso    segpt-16 0:05.95 3624352 4.32 1.41 0 905658
+espresso    sys   0:04.45 2804 4.41 0.00 0 385
+espresso    mi    0:04.73 2724 4.70 0.01 0 385
+barnes      strictseglockedcustom 0:02.52 59716 2.50 0.01 0 9698
+barnes      strictsegptcustom 0:02.61 60012 2.59 0.01 0 10375
+barnes      strictseglocked-16 0:02.76 59752 2.72 0.01 0 8674
+barnes      strictsegpt-16 0:02.78 57780 2.74 0.01 0 8087
+barnes      segpt-16 0:02.68 60356 2.65 0.01 0 8864
+barnes      sys   0:02.51 58148 2.49 0.01 0 8085
+barnes      mi    0:02.56 57804 2.52 0.01 0 7577
 Command exited with non-zero status 127
-redis       KingsleyAlloc 0: 2148 0.00 0.00 0 135
+redis       strictseglockedcustom 0: 2088 0.00 0.00 0 136
 Command exited with non-zero status 127
-redis       KingsleySLL 0: 2088 0.00 0.00 0 135
+redis       strictsegptcustom 0: 2152 0.00 0.00 0 138
 Command exited with non-zero status 127
-redis       KingsleyBigChunk 0: 2148 0.00 0.00 0 136
+redis       strictseglocked-16 0: 2152 0.00 0.00 0 137
 Command exited with non-zero status 127
-redis       Kingsley25Bins 0: 2024 0.00 0.00 0 136
+redis       strictsegpt-16 0: 2020 0.00 0.00 0 137
 Command exited with non-zero status 127
-redis       Kingsley20Bins 0: 2024 0.00 0.00 0 136
+redis       segpt-16 0: 2152 0.00 0.00 0 136
 Command exited with non-zero status 127
-redis       Kingsley16Bins 0: 2088 0.00 0.00 0 136
-Command terminated by signal 11
-larsonN-sized KingsleyAlloc 0: 57496 0.02 0.07 0 12357
-Command terminated by signal 11
-larsonN-sized KingsleySLL 0: 54236 0.03 0.07 0 12477
-Command terminated by signal 11
-larsonN-sized KingsleyBigChunk 0: 56060 5.40 0.08 0 12413
-Command terminated by signal 11
-larsonN-sized Kingsley25Bins 0: 57576 0.02 0.06 0 12346
-Command terminated by signal 11
-larsonN-sized Kingsley20Bins 0: 54172 0.02 0.05 0 12472
-Command terminated by signal 11
-larsonN-sized Kingsley16Bins 0: 54040 0.03 0.06 0 12477
+redis       sys   0: 2152 0.00 0.00 0 137
+Command exited with non-zero status 127
+redis       mi    0: 2148 0.00 0.00 0 137
+larsonN-sized strictseglockedcustom 0: 80004 5.97 47.28 0 19016
+larsonN-sized strictsegptcustom 0: 500276 59.72 0.55 0 124156
+larsonN-sized strictseglocked-16 0: 55272 6.02 47.79 0 12835
+larsonN-sized strictsegpt-16 0:10.138 108044 56.46 0.84 0 29820
+larsonN-sized segpt-16 0: 7110376 4.18 14.98 61 1777357
+larsonN-sized sys   0:17.653 101640 50.40 0.83 1 26850
+larsonN-sized mi    0:11.829 103988 57.35 0.92 0 27245
 Command terminated by signal 6
-mstressN    KingsleyAlloc 0:00.09 3456 0.00 0.00 0 286
+mstressN    strictseglockedcustom 0:00.56 78912 0.07 0.65 1 19246
+Command terminated by signal 6
+mstressN    strictsegptcustom 0:00.45 66080 0.01 0.15 1 15578
 Command terminated by signal 11
-mstressN    KingsleySLL 0:00.10 3592 0.00 0.01 0 317
-Command terminated by signal 11
-mstressN    KingsleyBigChunk 0:00.07 3520 0.00 0.00 0 300
+mstressN    strictseglocked-16 0:01.04 210692 0.27 1.79 1 52917
+mstressN    strictsegpt-16 0:01.27 387540 5.87 2.26 0 776321
+Command terminated by signal 9
+mstressN    segpt-16 0:24.50 7350576 4.82 25.48 342 1837630
+mstressN    sys   0:02.33 370908 7.99 3.47 1 855778
+mstressN    mi    0:01.85 389732 7.78 3.01 0 732118
+rptestN     strictseglockedcustom 0:8.958 1911852 3.20 15.42 14 477665
+rptestN     strictsegptcustom 0:5.060 2058196 1.46 6.81 1 514122
+rptestN     strictseglocked-16 0:8.499 1896244 3.10 14.36 1 473737
+rptestN     strictsegpt-16 0:1.442 44992 2.42 0.83 0 25675
+Command terminated by signal 2
+rptestN     segpt-16 0: 7920 5810.22 4.36 1 1529
+Command terminated by signal 2
+rptestN     sys   0: 1996 0.00 0.00 0 292
+Command terminated by signal 2
+rptestN     mi    0: 2108 0.00 0.00 0 292
 Command terminated by signal 6
-mstressN    Kingsley25Bins 0:00.09 3424 0.00 0.01 0 328
+gs          strictseglockedcustom 0:00.33 35192 0.02 0.04 186 3662
 Command terminated by signal 6
-mstressN    Kingsley20Bins 0:00.10 3516 0.00 0.01 0 319
-Command terminated by signal 11
-mstressN    Kingsley16Bins 0:00.06 3516 0.00 0.00 0 296
+gs          strictsegptcustom 0:00.15 35720 0.02 0.03 0 3679
+Command terminated by signal 2
+gs          strictseglocked-16 0:00.25 96932 0.20 0.04 25 21652
+Command terminated by signal 2
+gs          strictsegpt-16 0:00.25 29024 0.23 0.01 0 5237
+Command terminated by signal 2
+gs          segpt-16 0:00.33 397868 0.17 0.15 0 96791
+Command terminated by signal 2
+gs          sys   0:00.22 28320 0.21 0.01 0 5081
+gs          mi    0:00.27 29524 0.26 0.01 10 5396
+Command terminated by signal 2
+lua         strictseglockedcustom 0:00.16 21888 0.09 0.06 196 11077
+Command terminated by signal 2
+lua         strictsegptcustom 0:00.24 43000 0.22 0.09 65 13113
+Command terminated by signal 2
+lua         strictseglocked-16 0:00.26 45664 0.41 0.10 1 16767
+Command terminated by signal 2
+lua         strictsegpt-16 0:00.24 40488 0.20 0.06 0 9848
+Command terminated by signal 2
+lua         segpt-16 0:00.30 62568 0.28 0.13 0 20424
+Command terminated by signal 2
+lua         sys   0:00.19 21956 0.12 0.04 0 6861
+Command terminated by signal 2
+lua         mi    0:00.22 40572 0.23 0.09 0 9862
+Command terminated by signal 2
+alloc-test1 strictseglockedcustom 0:00.24 20752 0.23 0.01 1 3554
+Command terminated by signal 2
+alloc-test1 strictsegptcustom 0:00.25 20488 0.23 0.01 0 3569
+Command terminated by signal 2
+alloc-test1 strictseglocked-16 0:00.23 17156 0.22 0.01 0 2702
+Command terminated by signal 2
+alloc-test1 strictsegpt-16 0:00.23 14036 0.22 0.00 0 1912
+Command terminated by signal 2
+alloc-test1 segpt-16 0:00.27 98712 0.22 0.05 0 23660
+Command terminated by signal 2
+alloc-test1 sys   0:00.22 14052 0.21 0.00 0 1913
+Command terminated by signal 2
+alloc-test1 mi    0:00.23 14088 0.22 0.00 0 1911
+Command terminated by signal 2
+alloc-testN strictseglockedcustom 0:00.26 20292 0.31 2.38 0 4982
+Command terminated by signal 2
+alloc-testN strictsegptcustom 0:01.33 22772 16.05 0.04 0 5292
+Command terminated by signal 2
+alloc-testN strictseglocked-16 0:00.18 16516 0.20 1.77 0 4005
+Command terminated by signal 2
+alloc-testN strictsegpt-16 0:00.16 14940 2.02 0.02 0 3395
+Command terminated by signal 2
+alloc-testN segpt-16 0:00.15 156292 0.60 0.17 0 38673
+Command terminated by signal 2
+alloc-testN sys   0:00.13 15064 1.32 0.03 0 3356
+Command terminated by signal 2
+alloc-testN mi    0:00.17 14812 1.77 0.03 0 3379
+Command terminated by signal 2
+sh6benchN   strictseglockedcustom 0:00.15 3960 0.16 1.25 0 630
+Command terminated by signal 2
+sh6benchN   strictsegptcustom 0:00.16 87936 1.00 0.12 0 21629
+Command terminated by signal 2
+sh6benchN   strictseglocked-16 0:00.16 3696 0.19 1.68 0 558
+Command terminated by signal 2
+sh6benchN   strictsegpt-16 0:00.15 42892 1.83 0.08 0 10704
+Command terminated by signal 2
+sh6benchN   segpt-16 0:00.18 314728 0.24 0.39 0 78200
+Command terminated by signal 2
+sh6benchN   sys   0:00.14 42032 1.76 0.06 0 10476
+Command terminated by signal 2
+sh6benchN   mi    0:00.34 91532 4.01 0.13 0 22853
+Command terminated by signal 2
+sh8benchN   strictseglockedcustom 0:00.23 104456 0.20 1.87 0 17718
 Command terminated by signal 6
-rptestN     KingsleyAlloc 0: 4292 0.00 0.03 0 559
-Command terminated by signal 11
-rptestN     KingsleySLL 0: 3896 0.00 0.03 0 433
-Command terminated by signal 11
-rptestN     KingsleyBigChunk 0: 4052 0.00 0.03 0 485
-Command terminated by signal 6
-rptestN     Kingsley25Bins 0: 4044 0.00 0.04 0 461
-Command terminated by signal 6
-rptestN     Kingsley20Bins 0: 4032 0.00 0.04 0 482
-Command terminated by signal 11
-rptestN     Kingsley16Bins 0: 4544 0.00 0.04 0 685
-Command terminated by signal 11
-gs          KingsleyAlloc 0:00.27 32968 0.18 0.02 0 5683
-Command terminated by signal 11
-gs          KingsleySLL 0:00.27 32852 0.18 0.01 0 5680
-Command terminated by signal 11
-gs          KingsleyBigChunk 0:00.28 32932 0.19 0.02 0 5686
-Command terminated by signal 11
-gs          Kingsley25Bins 0:00.27 32828 0.18 0.02 0 5684
-Command terminated by signal 11
-gs          Kingsley20Bins 0:00.27 33100 0.18 0.02 0 5684
-Command terminated by signal 11
-gs          Kingsley16Bins 0:00.32 113828 0.19 0.04 0 25967
-Command exited with non-zero status 2
-lua         KingsleyAlloc 0:01.17 107392 7.64 0.67 0 140277
-Command exited with non-zero status 2
-lua         KingsleySLL 0:01.17 107260 7.43 0.66 0 134876
-Command exited with non-zero status 2
-lua         KingsleyBigChunk 0:01.14 108224 7.79 0.59 1 142669
-Command exited with non-zero status 2
-lua         Kingsley25Bins 0:01.25 106576 7.64 0.64 0 139280
-Command exited with non-zero status 2
-lua         Kingsley20Bins 0:01.13 106868 7.60 0.66 4 140255
-Command exited with non-zero status 2
-lua         Kingsley16Bins 0:01.22 109488 7.64 0.62 0 137482
-alloc-test1 KingsleyAlloc 0:02.95 15180 2.93 0.00 0 2726
-alloc-test1 KingsleySLL 0:02.96 15308 2.94 0.00 0 2721
-alloc-test1 KingsleyBigChunk 0:02.93 15180 2.91 0.00 0 2729
-alloc-test1 Kingsley25Bins 0:02.95 15180 2.93 0.00 0 2727
-alloc-test1 Kingsley20Bins 0:02.93 15308 2.92 0.00 0 2725
-alloc-test1 Kingsley16Bins 0:02.91 15360 2.89 0.00 0 2727
-Command terminated by signal 6
-alloc-testN KingsleyAlloc 0:00.15 5320 0.00 0.02 0 779
-Command terminated by signal 6
-alloc-testN KingsleySLL 0:00.10 4540 0.00 0.01 0 579
-Command terminated by signal 6
-alloc-testN KingsleyBigChunk 0:00.10 4360 0.00 0.01 0 563
-Command terminated by signal 11
-alloc-testN Kingsley25Bins 0:00.11 4416 0.00 0.01 0 604
-Command terminated by signal 6
-alloc-testN Kingsley20Bins 0:00.12 4420 0.00 0.02 0 555
-Command terminated by signal 6
-alloc-testN Kingsley16Bins 0:00.08 3652 0.00 0.00 0 318
-Command terminated by signal 6
-sh6benchN   KingsleyAlloc 0:00.13 3508 0.00 0.02 0 313
-Command terminated by signal 6
-sh6benchN   KingsleySLL 0:00.09 3508 0.00 0.01 0 303
-Command terminated by signal 6
-sh6benchN   KingsleyBigChunk 0:00.11 3644 0.00 0.01 0 296
-Command terminated by signal 6
-sh6benchN   Kingsley25Bins 0:00.13 3508 0.00 0.01 0 307
-Command terminated by signal 6
-sh6benchN   Kingsley20Bins 0:00.08 3508 0.00 0.01 0 295
-Command terminated by signal 6
-sh6benchN   Kingsley16Bins 0:00.13 3512 0.00 0.02 0 315
-Command terminated by signal 6
-sh8benchN   KingsleyAlloc 0:00.24 81332 0.00 0.08 0 6551
-Command terminated by signal 6
-sh8benchN   KingsleySLL 0:00.24 81452 0.00 0.09 0 8611
-Command terminated by signal 11
-sh8benchN   KingsleyBigChunk 0:00.23 81588 0.00 0.07 0 7577
-Command terminated by signal 6
-sh8benchN   Kingsley25Bins 0:00.23 81572 0.00 0.07 0 7572
-Command terminated by signal 11
-sh8benchN   Kingsley20Bins 0:00.21 81532 0.00 0.08 0 7047
-Command terminated by signal 11
-sh8benchN   Kingsley16Bins 0:00.25 81584 0.00 0.08 0 7576
-Command terminated by signal 11
-xmalloc-testN KingsleyAlloc 0: 3452 0.00 0.01 0 287
-Command terminated by signal 11
-xmalloc-testN KingsleySLL 0: 3520 0.00 0.01 0 289
-Command terminated by signal 11
-xmalloc-testN KingsleyBigChunk 0: 3596 0.00 0.02 0 343
-Command terminated by signal 6
-xmalloc-testN Kingsley25Bins 0: 3512 0.00 0.01 0 327
-Command terminated by signal 11
-xmalloc-testN Kingsley20Bins 0: 3384 0.00 0.00 0 286
-Command terminated by signal 11
-xmalloc-testN Kingsley16Bins 0: 3644 0.00 0.02 0 343
-cache-scratch1 KingsleyAlloc 0:00.84 3524 0.84 0.00 0 281
-cache-scratch1 KingsleySLL 0:00.85 3676 0.84 0.00 0 278
-cache-scratch1 KingsleyBigChunk 0:00.85 3508 0.84 0.00 0 279
-cache-scratch1 Kingsley25Bins 0:00.84 3584 0.84 0.00 0 278
-cache-scratch1 Kingsley20Bins 0:00.86 3524 0.85 0.00 0 278
-cache-scratch1 Kingsley16Bins 0:00.87 3516 0.87 0.00 0 278
-cache-scratchN KingsleyAlloc 0:00.14 3676 1.70 0.00 0 308
-cache-scratchN KingsleySLL 0:00.14 3688 1.69 0.00 0 306
-cache-scratchN KingsleyBigChunk 0:00.14 3648 1.69 0.00 0 307
-cache-scratchN Kingsley25Bins 0:00.14 3532 1.70 0.00 0 307
-cache-scratchN Kingsley20Bins 0:00.14 3652 1.69 0.00 0 307
-cache-scratchN Kingsley16Bins 0:00.14 3700 1.69 0.00 0 307
-glibc-simple KingsleyAlloc 0:01.71 3736 1.70 0.00 0 349
-glibc-simple KingsleySLL 0:01.72 3708 1.72 0.00 0 350
-glibc-simple KingsleyBigChunk 0:01.70 3832 1.69 0.00 0 350
-glibc-simple Kingsley25Bins 0:01.71 3648 1.71 0.00 0 348
-glibc-simple Kingsley20Bins 0:01.71 3744 1.70 0.00 0 347
-glibc-simple Kingsley16Bins 0:01.76 3536 1.74 0.00 0 349
-Command terminated by signal 6
-glibc-thread KingsleyAlloc 0: 3568 0.00 0.01 0 369
-Command terminated by signal 6
-glibc-thread KingsleySLL 0: 3768 0.00 0.02 0 367
-Command terminated by signal 6
-glibc-thread KingsleyBigChunk 0: 3712 0.00 0.01 0 352
-Command terminated by signal 6
-glibc-thread Kingsley25Bins 0: 3768 0.00 0.01 0 345
-Command terminated by signal 6
-glibc-thread Kingsley20Bins 0: 3592 0.00 0.00 0 345
-Command terminated by signal 6
-glibc-thread Kingsley16Bins 0: 3700 0.00 0.01 0 362
+sh8benchN   strictsegptcustom 0:01.26 158352 0.04 0.52 0 29502
+Command terminated by signal 2
+sh8benchN   strictseglocked-16 0:00.33 129652 0.38 2.87 0 23579
+Command terminated by signal 2
+sh8benchN   strictsegpt-16 0:00.18 159748 1.54 0.16 0 33251
+Command terminated by signal 2
+sh8benchN   segpt-16 0:00.18 313384 0.17 0.30 0 72369
+Command terminated by signal 2
+sh8benchN   sys   0:00.16 158412 1.13 0.22 0 39867
+Command terminated by signal 2
+sh8benchN   mi    0:00.21 158860 1.47 0.22 0 38800
+Command terminated by signal 2
+xmalloc-testN strictseglockedcustom 0: 10876 0.20 1.70 0 2354
+Command terminated by signal 2
+xmalloc-testN strictsegptcustom 0: 330820 0.22 0.52 0 82303
+Command terminated by signal 2
+xmalloc-testN strictseglocked-16 0: 8940 0.11 0.95 0 2308
+Command terminated by signal 2
+xmalloc-testN strictsegpt-16 0: 58448 5.87 0.18 0 18002
+Command terminated by signal 2
+xmalloc-testN segpt-16 0: 2108 0.00 0.00 0 218
+Command terminated by signal 2
+xmalloc-testN sys   0: 5748 0.06 0.01 0 1456
+Command terminated by signal 2
+xmalloc-testN mi    0: 7120 0.07 0.02 0 1729
+Command terminated by signal 2
+cache-scratch1 strictseglockedcustom 0:00.01 3412 0.00 0.00 0 280
+Command terminated by signal 2
+cache-scratch1 strictsegptcustom 0:00.02 3456 0.02 0.00 0 286
+Command terminated by signal 2
+cache-scratch1 strictseglocked-16 0:00.02 3308 0.02 0.00 0 283
+Command terminated by signal 2
+cache-scratch1 strictsegpt-16 0:00.02 3280 0.02 0.00 0 263
+Command terminated by signal 2
+cache-scratch1 segpt-16 0:00.02 3292 0.02 0.00 0 273
+Command terminated by signal 2
+cache-scratch1 sys   0:00.02 3280 0.02 0.00 0 263
+Command terminated by signal 2
+cache-scratch1 mi    0:00.02 3280 0.02 0.00 0 261
+Command terminated by signal 2
+cache-scratchN strictseglockedcustom 0:00.02 3436 0.25 0.00 0 309
+Command terminated by signal 2
+cache-scratchN strictsegptcustom 0:00.02 3648 0.22 0.00 0 339
+Command terminated by signal 2
+cache-scratchN strictseglocked-16 0:00.02 3436 0.22 0.00 0 309
+Command terminated by signal 2
+cache-scratchN strictsegpt-16 0:00.02 3404 0.24 0.00 0 290
+Command terminated by signal 2
+cache-scratchN segpt-16 0:00.02 3436 0.23 0.00 0 316
+Command terminated by signal 2
+cache-scratchN sys   0:00.02 3280 0.25 0.00 0 288
+Command terminated by signal 2
+cache-scratchN mi    0:00.02 3408 0.27 0.00 0 292
+Command terminated by signal 2
+glibc-simple strictseglockedcustom 0:00.02 3228 0.01 0.00 0 272
+Command terminated by signal 2
+glibc-simple strictsegptcustom 0:00.02 3316 0.02 0.00 0 276
+Command terminated by signal 2
+glibc-simple strictseglocked-16 0:00.02 3308 0.02 0.00 0 272
+Command terminated by signal 2
+glibc-simple strictsegpt-16 0:00.02 1980 0.02 0.00 0 192
+Command terminated by signal 2
+glibc-simple segpt-16 0:00.02 18668 0.01 0.00 0 4145
+Command terminated by signal 2
+glibc-simple sys   0:00.02 2104 0.02 0.00 0 190
+Command terminated by signal 2
+glibc-simple mi    0:00.02 2104 0.02 0.00 0 192
+Command terminated by signal 2
+glibc-thread strictseglockedcustom 0: 4988 0.02 0.21 0 833
+Command terminated by signal 2
+glibc-thread strictsegptcustom 0: 8132 0.08 0.01 0 1687
+Command terminated by signal 2
+glibc-thread strictseglocked-16 0: 4220 0.00 0.09 0 648
+Command terminated by signal 2
+glibc-thread strictsegpt-16 0: 3600 0.14 0.00 0 836
+Command terminated by signal 2
+glibc-thread segpt-16 0: 33400 0.02 0.03 0 7962
+Command terminated by signal 2
+glibc-thread sys   0: 3600 0.15 0.00 0 841
+Command terminated by signal 2
+glibc-thread mi    0: 3600 0.20 0.00 0 863
+Command terminated by signal 2
+rocksdb     strictseglockedcustom 0:00.01 4036 0.00 0.00 17 330
+Command terminated by signal 2
+rocksdb     strictsegptcustom 0:00.02 12336 0.00 0.00 76 798
+Command terminated by signal 2
+rocksdb     strictseglocked-16 0:00.02 12320 0.00 0.00 0 761
+Command terminated by signal 2
+rocksdb     strictsegpt-16 0:00.02 13384 0.01 0.00 30 803
+Command terminated by signal 2
+rocksdb     segpt-16 0:00.02 10668 0.02 0.00 0 588
+Command terminated by signal 2
+rocksdb     sys   0:00.02 15824 0.01 0.01 1 1418
+Command terminated by signal 2
+rocksdb     mi    0:00.03 15796 0.01 0.01 0 1418
