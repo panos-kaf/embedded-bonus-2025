@@ -1,14 +1,13 @@
 #pragma once
-#include "heaplayers.h"
 #include <mutex>
-#include "malign.h"
+#include "heaplayers.h"
+#include "malign.h" 
+#include "segregated_policy_functions.h"
 
 // 1. RAW SOURCES (Where bytes come from)
 
-// Infinite Memory (The "City Water Main")
 using SourceMmap = HL::MmapHeap; 
 
-// Fixed Memory (The "Bucket")
 template <size_t Size = 1024 * 1024> // 1 MB default
 using SourceStatic = HL::StaticBufferHeap<Size>;
 
@@ -16,11 +15,10 @@ using SourceStatic = HL::StaticBufferHeap<Size>;
 using SourceSysMalloc = HL::MallocHeap;
 
 // 2. LAYOUTS (How we organize bytes)
-// Strategy A: The "Cookie Cutter" (Zone) - Fast, No free()
+
 template <class Source, int ChunkSize = 64 * 1024>
 using LayoutZone = HL::SizeHeap<HL::ZoneHeap<Source, ChunkSize>>;
 
-// Strategy B: The "Organizer" (Freelist) - Standard malloc
 template <class Source>
 using LayoutFreelist = HL::SizeHeap<HL::FreelistHeap<Source>>;
 
@@ -30,18 +28,14 @@ using LayoutAdapt = HL::AdaptHeap<ListType, Source>;
 template <class Source, size_t ChunkSize>
 using LayoutUniqueZone = HL::SizeHeap<HL::UniqueHeap<HL::ZoneHeap<Source, ChunkSize>>>;
 
-// 3. POLICIES (The Traffic Cops)
+// 3. POLICIES 
 
-// Router A: The "Hybrid Splitter" (SizeHeap)
 // Routes small allocs to 'SmallHeap', large allocs to 'BigHeap'.
 // Threshold is usually 256 or 1024 bytes.
 template <size_t size, class SmallHeap, class BigHeap>
 using PolicySplitter = HL::HybridHeap<size, SmallHeap, BigHeap>;
 
-// Router B: The "Perfect Fit" (SegregatedHeap)
 // Creates an array of heaps (one for size 8, one for 16, etc).
-// This is used for high-performance "Bucket" allocators.
-
 template <int NUM_BINS, class SmallHeap, class BigHeap>
 using PolicySeg = HL::SegHeap<
     NUM_BINS, 
@@ -60,6 +54,15 @@ using PolicyStrictSeg = HL::StrictSegHeap<
     BigHeap
 >;
 
+template <int NUM_BINS, class SmallHeap, class BigHeap>
+using PolicyCustom = HL::StrictSegHeap<
+    NUM_BINS, 
+    size_to_class, 
+    class_to_size, 
+    SmallHeap,
+    BigHeap
+>;
+
 // 4. ADAPTERS (Concurrency & Safety)
 
 // Thread Safety: Global Lock
@@ -70,83 +73,75 @@ using LockMutex = HL::LockedHeap<std::recursive_mutex, Heap>;
 template <class Heap>
 using PerThread = HL::ThreadSpecificHeap<Heap>;
 
-// 5. PRE-BUILT RECIPES
 
-// RECIPE 1: Simple Allocators
+// PRE-BUILT ALLOCATORS
+
+// Simple Allocators
 using SimpleBuffer = LockMutex<LayoutFreelist<Malign<16, SourceStatic<64 * 1024 * 1024>>>>;
 
 using SimpleMmap = LockMutex<LayoutFreelist<SourceMmap>>;
 
 using SimpleSys = LockMutex<LayoutFreelist<SourceSysMalloc>>;
 
-// RECIPE 2: The "Scratchpad" (Fastest)
+// The "Scratchpad"
 using MmapArena = PerThread<LayoutZone<SourceMmap>>;
 
-// RECIPE 3: The "Smart Hybrid" (SizeHeap)
-// Scenario: We want fast Zones for small items, but we don't want to 
-// waste memory for large items.
 
-// needs work
-/*
-// 1. Define the two paths
-using _SmallPath = LayoutZone<SourceMmap>;      // Fast!
-using _BigPath   = LayoutFreelist<SourceMmap>;  // Smart!
-// 2. Combine them (Split at 256 bytes)
-using _Hybrid    = PolicySplitter<256, _SmallPath, _BigPath>;
-// 3. Lock it
-using HybridLocked = LockMutex<_Hybrid>;
-using HybridPerThread = PerThread<_Hybrid>;
-*/
+// We want fast Zones for small items, but we don't want to waste memory for large items.
+// (doesnt work)
 
+// Define the two heaps
 using HybridSmallPath = HL::FreelistHeap<Malign<16, LayoutZone<SourceMmap, 4096>>>;
 using HybridBigPath = HL::SizeHeap<SourceMmap>;
+// Combine them 
 using _Hybrid = Malign<16, HL::HybridHeap<8192, HybridSmallPath, HybridBigPath>>;
+// Lock it
 using Hybrid = HL::LockedHeap<std::recursive_mutex, _Hybrid>;
 
-// RECIPE 3b: Segregated Heap - basically kingsley
+
+// Segregated Heap
 using SegSmallHeap = LayoutAdapt<DLList, LayoutZone<SourceMmap, 4096>>;
 using SegBigHeap = LayoutZone<SourceMmap, 65536>;
 
-using Segregated = LockMutex<PolicySeg<29, SegSmallHeap, SegBigHeap>>;
-using StrictSeg = LockMutex<PolicyStrictSeg<29, SegSmallHeap, SegBigHeap>>;
+using LockedSeg = LockMutex<PolicySeg<29, SegSmallHeap, SegBigHeap>>;
+using LockedStrictSeg = LockMutex<PolicyStrictSeg<29, SegSmallHeap, SegBigHeap>>;
 
-
-// RECIPE 4: The "Pro Tier" (Segregated + PerThread)
-// This mimics Mimalloc / TCMalloc architecture.
-// 1. The Global Source (Locked once per 64KB chunk)
+// Segregated + PerThread
 using _Global = SourceMmap;
-// 2. The Page Factory (Zones that pull from Global)
-using _SmallHeap   = LayoutZone<_Global, 64 * 1024>;   // Reduced from 64KB to 8KB
+
+using _SmallHeap   = LayoutZone<_Global, 64 * 1024>;   // 64KB
 using _BigHeap     = LayoutZone<_Global, 256 * 1024>;
-// 3. The Buckets (Array of Pages)
+
 using _Buckets = PolicySeg<
-    16,                               // Reduced from 256 to 32 bins
+    16,                               // Reduced from 32 to 16 bins
     _SmallHeap,
     _BigHeap                 
 >;
-// 4. Thread Local Interface (No locks on fast path)
-using SegregatedPerThread = PerThread<_Buckets>;
 
+using SegPT = PerThread<_Buckets>;
+
+// Small heap now has a freelist
 using FreeSmall = LayoutFreelist<_SmallHeap>;
-using SegPTFreelist = PerThread<HL::SizeHeap<PolicySeg<16, FreeSmall, _BigHeap>>>;
+using SegPT-Freelist = PerThread<HL::SizeHeap<PolicySeg<16, FreeSmall, _BigHeap>>>;
 
-// RECIPE 4b: Ultra-Optimized "Kingsley+" (More bins for tiny objects)
-// For workloads with high tiny allocation pressure
-using _KingsleySmallHeap = LayoutZone<_Global, 4096>;   // Even smaller chunks
-using _KingsleyBuckets = PolicySeg<
-    64,                               // More bins (sweet spot)
-    _KingsleySmallHeap,
-    _BigHeap
+// Increase num of bins
+using _SmallHeap4KB = LayoutZone<_Global, 4096>;   // Even smaller chunks
+using _Buckets64Bins = PolicySeg<
+    64,                               // More bins
+    _SmallHeap4KB,
+    _BigHeap64Bins
 >;
-using SegregatedPerThreadPlus = PerThread<_KingsleyBuckets>;
+using SegPT64Bins = PerThread<_Buckets64Bins>;
 
-
-// RECIPE 7: Strict Segregated + PerThread (Lower fragmentation)
+// Strict Segregated + PerThread (Lower fragmentation)
+using _StrictBuckets = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, LayoutFreelist<_Global>>;
 using _StrictBucketsNoFree = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, _Global>;
-using _StrictBucketsFree = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, LayoutFreelist<_Global>>;
 
-using StrictSegregatedPerThreadNoFree = PerThread<_StrictBucketsNoFree>;
-using StrictSegregatedPerThreadFree = PerThread<_StrictBucketsFree>;
+using StrictSegPT = PerThread<_StrictBuckets>;
+using StrictSegPTNoFree = PerThread<_StrictBucketsNoFree>;
+
+using StrictSegPTCustom = PolicyCustom<32, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, LayoutFreelist<_Global>>;
+using StrictSegPTNoFreeCustom = PolicyCustom<32, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, _Global>;
 
 // Final ANSI Wrapper
 template <class Allocator>

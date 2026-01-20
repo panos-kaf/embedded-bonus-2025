@@ -1,6 +1,5 @@
 #pragma once
 #include "custom_policy.h"
-#include "segregated_policy_functions.h"
 
 template <int NUM_BINS, class SmallHeap, class BigHeap>
 using PolicyKingsley = HL::StrictSegHeap<
@@ -10,16 +9,6 @@ using PolicyKingsley = HL::StrictSegHeap<
     SmallHeap,
     BigHeap
 >;
-
-template <int NUM_BINS, class SmallHeap, class BigHeap>
-using PolicyCustom = HL::StrictSegHeap<
-    NUM_BINS, 
-    size_to_class, 
-    class_to_size, 
-    SmallHeap,
-    BigHeap
->;
-
 
 template <class Source, size_t ChunkSize, class ListType>
 using KingsleySmallHeap = LayoutAdapt<ListType, LayoutUniqueZone<Source, ChunkSize>>;
@@ -57,16 +46,3 @@ using Kingsley20BinsLocked = LockMutex<Kingsley20Bins>;
 using Kingsley16Bins = PolicyKingsley<16, KingsleySmall, KingsleyBig>;
 using Kingsley16BinsPT = PerThread<Kingsley16Bins>;
 using Kingsley16BinsLocked = LockMutex<Kingsley16Bins>;
-
-using _StrictBucketsNoFree = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, _Global>;
-using _StrictBucketsFree = PolicyStrictSeg<16, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, LayoutFreelist<_Global>>;
-
-using _StrictBuckersNoFree_Custom = PolicyCustom<32, LayoutFreelist<LayoutZone<_Global, 64 * 1024>>, _Global>;
-
-using StrictSegregatedPTNoFreeCustom = PerThread< _StrictBuckersNoFree_Custom>;
-using StrictSegregatedLockedNoFreeCustom = LockMutex< _StrictBuckersNoFree_Custom>;
-
-using StrictSegregatedPTNoFree = PerThread< _StrictBucketsNoFree>;
-using StrictSegregatedPTFree = PerThread< _StrictBucketsFree>;
-using StrictSegregatedLockedNoFree = LockMutex<_StrictBucketsNoFree>;
-using StrictSegregatedLockedFree = LockMutex<_StrictBucketsFree>;

@@ -8,10 +8,8 @@
 
 using Heap = TheAllocator<HL_POLICY>;
 
-// DELETE THIS LINE:
 // Heap theHeap; 
 
-// ADD THIS FUNCTION:
 // This wrapper ensures 'theHeap' is fully constructed before it is ever used.
 static Heap& getHeap() {
     static Heap theHeap;
@@ -27,7 +25,6 @@ static void initHeap() {
 extern "C" {
 
 void* malloc(size_t sz) {
-    // REPLACE 'theHeap.' WITH 'getHeap().' EVERYWHERE
     return getHeap().malloc(sz);
 }
 
