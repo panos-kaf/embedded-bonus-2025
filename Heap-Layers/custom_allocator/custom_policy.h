@@ -122,14 +122,14 @@ using SegPT = PerThread<_Buckets>;
 
 // Small heap now has a freelist
 using FreeSmall = LayoutFreelist<_SmallHeap>;
-using SegPT-Freelist = PerThread<HL::SizeHeap<PolicySeg<16, FreeSmall, _BigHeap>>>;
+using SegPTFreelist = PerThread<HL::SizeHeap<PolicySeg<16, FreeSmall, _BigHeap>>>;
 
 // Increase num of bins
 using _SmallHeap4KB = LayoutZone<_Global, 4096>;   // Even smaller chunks
 using _Buckets64Bins = PolicySeg<
     64,                               // More bins
     _SmallHeap4KB,
-    _BigHeap64Bins
+    _BigHeap
 >;
 using SegPT64Bins = PerThread<_Buckets64Bins>;
 
